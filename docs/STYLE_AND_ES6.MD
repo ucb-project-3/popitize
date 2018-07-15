@@ -4,6 +4,16 @@ It will also explain the use of es6 concepts
 **Table of Contents**
 <!-- TOC -->
 
+- [code style](#code-style)
+  - [general](#general)
+  - [react](#react)
+  - [node](#node)
+  - [scss](#scss)
+- [Git Rules](#git-rules)
+  - [Commits](#commits)
+  - [Pull Requests](#pull-requests)
+  - [issues](#issues)
+  - [Don't](#dont)
 - [es6 => beyond](#es6--beyond)
   - [Variables](#variables)
     - [let](#let)
@@ -18,13 +28,115 @@ It will also explain the use of es6 concepts
     - [multi-line implied return arrow functions](#multi-line-implied-return-arrow-functions)
     - [when are arrow function returns non-implicit?](#when-are-arrow-function-returns-non-implicit)
   - [ternary expressions](#ternary-expressions)
-- [code style](#code-style)
-  - [general](#general)
-  - [react](#react)
-  - [node](#node)
-  - [scss](#scss)
+    - [How they work](#how-they-work)
+    - [How to not get in trouble](#how-to-not-get-in-trouble)
+  - [Default and Rest parameters](#default-and-rest-parameters)
+    - [Default parameters](#default-parameters)
+    - [Rest operator](#rest-operator)
 
 <!-- /TOC -->
+# code style
+**use eslint**
+
+## general
+- always prefer es6, when applicable.
+- use arrow functions unless react lifecycle method.
+- use single quoted strings, unless inside of JSX tags*
+- use template literal strings over string addition
+- max line length of 80 characters, preferably less than 72
+- spaces between single line curly braces, ie `{ name: david }`
+- variable names must be `camelCase`
+- class names must be `TitleCase`
+- private methods and variables on classes (methods/variables that should only be used by the object instantiated from the class itself) should start with an underscore `_methodName`
+- use += and -= instead of ++ or --
+- production app should not contain any console.log statements
+- use if/else instead of switch statements.
+- strongly prefer css animations
+
+## react
+- use es6 import/export syntax
+- single line tags must have a space at the end, ie `<Component />`
+- use propTypes
+- use lifecycle methods to prevent unnecessary rerendering of components.
+- don't forceUpdate components
+- any component connected to the redux store should have a `shouldComponentUpdate` method.
+- all iterable children components must have a unique key prop
+- stateless components that don't require lifecycle methods should be written as functions
+- any component with an interval or independent continuos element on it should have a `componentWillUnmount` method to remove it and prevent memory leaks
+- all inputs should be controlled
+- avoid importing entire libraries where only specific modules are required
+- JSX tags should be properly indented, as well as their props*
+- all components should be separated into separate files
+- all stateful components go into /containers
+- all functional components go into /presentational
+- do not use alerts, confirms, or prompts.
+- avoid styling in components
+- redux action types should be all caps and _ separated ie `FETCH_FILE_SUCCESS`
+
+## node
+- use require, es6 import/export not yet supported
+- separate logic into modules as much as possible
+- keep entry express file as dry as possible
+- keep all business logic and scripts separate from mvc structure.
+- controllers should contain as little logic as possible
+- use an index.js file to export directory contents where applicable
+
+## scss
+- class names and ids are - separated, ie `page-wrapper`
+- use rem units, vh, vw, and percents whenever possible
+- use css grid and flexbox for layout
+- design mobile first
+- stick to agreed upon color scheme
+- use ids for unique selectors, the lookup is much faster
+- use scss partials for component specific styles
+
+```javascript
+// *
+render() {
+  return (
+    <div
+      style={{height: "17rem"}}
+      onClick={this.click}
+    > 
+      <p>
+        hello
+      </p>
+    </div>
+  )
+}
+```
+# Git Rules
+
+## Commits
+
+Please Commit frequently, It helps uss track down bugs and resolve merge requests if something goes wrong. If you can, I would recommend committing and pushing to your branch every time you add a small piece to your code. Try to resolve breaking errors before you commit, so we can track down where they came from. Your commit message should be specific to what you added, no matter how small. If you accidentally stage a commit and then realize you are on the wrong branch, you can run git stash to get rid of it. If you accidentally commit to master, avoid from doing anything else, switch to the correct branch, and notify me so i can revert. No harm no foul.
+
+## Pull Requests
+
+Submit pull requests in feature related increments. The pull request can be as small as you would like it to be, but please refrain from making pull requests that encompass large amounts of code that is spread across the project. Each pull request should have a short descriptive message that outlines the changes made. Nobody should be merging their own pull requests unless making changes to their own document materials.
+
+## issues
+
+If you notice a bug that you are not confident in your ability to fix immediately, Feel free to submit an issue on github that contains specific relevant information regarding. Please comment on the issue you plan on fixing and submit a pull request dedicated only to the fix.
+
+## Don't
+
+- push to master.
+- push to master.
+- work on branches you don't own without communicating.
+- merge your own pull requests (unless docs)
+- push to master
+- not ask for help if you need it.
+- write commit and pull request messages that make no sense.
+- design entire features in one commit.
+- psh 2 mstr.
+- not inform your team of what you're doing, especially when starting a new feature.
+- work on features that belong to other team members without communicating intention.
+- presionar para dominar (~push to master~)
+- merge other's pull requests without actually reviewing them.
+- make jokes about how many times i reiterated the need not to push to master.
+
+As long as we communicate the amount of issues we may run into regarding version control should be limited.
 
 # es6 => beyond
 
@@ -391,6 +503,8 @@ Use implicit return arrow functions where more than one statement is not necessa
 Use explicit return arrow functions where more than one statement is necessary.
 
 ## ternary expressions
+
+### How they work
 Ternary expressions are those that implicitly return a variable or reference based on the evaluation of a boolean expression.
 Ternary expressions in javascript make use of the ? symbol, with return values separated by a colon.
 
@@ -421,7 +535,7 @@ render() {
   )
 }
 ```
-
+### How to not get in trouble
 This works well, but if the logic behind the conditional rendering of the components is more complex, needs to evaluate more than one expression (if/if else/esle/switch/etc...), then you should move this logic into a method that will return the desired component instead. Generally speaking, nested ternary statements work, but should not be used because they become very hard to read.
 ```javascript
 // don't do this
@@ -470,73 +584,21 @@ But i would avoid that as it may lead someone to believe the conditional stateme
 
 ...or just use normal if/else blocks. that's usually ok UNLESS you are making the statement within an implicit return function/return, ie in implicit return arrow functions or an implicit return statement.
 
-# code style
-**use eslint**
+## Default and Rest parameters
 
-## general
-- always prefer es6, when applicable.
-- use arrow functions unless react lifecycle method.
-- use single quoted strings, unless inside of JSX tags*
-- use template literal strings over string addition
-- max line length of 80 characters, preferably less than 72
-- spaces between single line curly braces, ie `{ name: david }`
-- variable names must be `camelCase`
-- class names must be `TitleCase`
-- private methods and variables on classes (methods/variables that should only be used by the object instantiated from the class itself) should start with an underscore `_methodName`
-- use += and -= instead of ++ or --
-- production app should not contain any console.log statements
-- use if/else instead of switch statements.
-- strongly prefer css animations
+### Default parameters
+You can declare defualt function parameters now
 
-## react
-- use es6 import/export syntax
-- single line tags must have a space at the end, ie `<Component />`
-- use propTypes
-- use lifecycle methods to prevent unnecessary rerendering of components.
-- don't forceUpdate components
-- any component connected to the redux store should have a `shouldComponentUpdate` method.
-- all iterable children components must have a unique key prop
-- stateless components that don't require lifecycle methods should be written as functions
-- any component with an interval or independent continuos element on it should have a `componentWillUnmount` method to remove it and prevent memory leaks
-- all inputs should be controlled
-- avoid importing entire libraries where only specific modules are required
-- JSX tags should be properly indented, as well as their props*
-- all components should be separated into separate files
-- all stateful components go into /containers
-- all functional components go into /presentational
-- do not use alerts, confirms, or prompts.
-- avoid styling in components
-- redux action types should be all caps and _ separated ie `FETCH_FILE_SUCCESS`
+`const func = (param = 'defaultParam') => ...`
 
-## node
-- use require, es6 import/export not yet supported
-- separate logic into modules as much as possible
-- keep entry express file as dry as possible
-- keep all business logic and scripts separate from mvc structure.
-- controllers should contain as little logic as possible
-- use an index.js file to export directory contents where applicable
+The parameter 'param' will be the string 'defaultParam' if the function is called and the argument for param is not provided.
 
-## scss
-- class names and ids are - separated, ie `page-wrapper`
-- use rem units, vh, vw, and percents whenever possible
-- use css grid and flexbox for layout
-- design mobile first
-- stick to agreed upon color scheme
-- use ids for unique selectors, the lookup is much faster
-- use scss partials for component specific styles
+### Rest operator
 
-```javascript
-// *
-render() {
-  return (
-    <div
-      style={{height: "17rem"}}
-      onClick={this.click}
-    > 
-      <p>
-        hello
-      </p>
-    </div>
-  )
-}
-```
+The rest operator is essentially the same as the spead parameter, except it refers to an undetermined amount of arguments that may be passed into a function.
+
+`const func = (param, ...otherParams) => ...`
+
+otherParams will be an array of all arguments coming after the firs argument.
+
+`const func = (param, ...otherParams) => console.log(otherParams[1])`
