@@ -18,6 +18,8 @@ It will also explain the use of es6 concepts
     - [multi-line implied return arrow functions](#multi-line-implied-return-arrow-functions)
     - [when are arrow function returns non-implicit?](#when-are-arrow-function-returns-non-implicit)
   - [ternary expressions](#ternary-expressions)
+    - [How they work](#how-they-work)
+    - [How to not get in trouble](#how-to-not-get-in-trouble)
 - [code style](#code-style)
   - [general](#general)
   - [react](#react)
@@ -391,6 +393,8 @@ Use implicit return arrow functions where more than one statement is not necessa
 Use explicit return arrow functions where more than one statement is necessary.
 
 ## ternary expressions
+
+### How they work
 Ternary expressions are those that implicitly return a variable or reference based on the evaluation of a boolean expression.
 Ternary expressions in javascript make use of the ? symbol, with return values separated by a colon.
 
@@ -421,7 +425,7 @@ render() {
   )
 }
 ```
-
+### How to not get in trouble
 This works well, but if the logic behind the conditional rendering of the components is more complex, needs to evaluate more than one expression (if/if else/esle/switch/etc...), then you should move this logic into a method that will return the desired component instead. Generally speaking, nested ternary statements work, but should not be used because they become very hard to read.
 ```javascript
 // don't do this
