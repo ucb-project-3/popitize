@@ -17,10 +17,12 @@ It will also explain the use of es6 concepts
     - [Single line Implied return Arrow Functions](#single-line-implied-return-arrow-functions)
     - [multi-line implied return arrow functions](#multi-line-implied-return-arrow-functions)
     - [when are arrow function returns non-implicit?](#when-are-arrow-function-returns-non-implicit)
+  - [ternary expressions](#ternary-expressions)
 - [code style](#code-style)
   - [general](#general)
   - [react](#react)
   - [node](#node)
+  - [scss](#scss)
 
 <!-- /TOC -->
 
@@ -387,6 +389,86 @@ Use implicit return arrow functions where more than one statement is not necessa
 - functions that return ternary statements.
 
 Use explicit return arrow functions where more than one statement is necessary.
+
+## ternary expressions
+Ternary expressions are those that implicitly return a variable or reference based on the evaluation of a boolean expression.
+Ternary expressions in javascript make use of the ? symbol, with return values separated by a colon.
+
+`const canMath = 1 === 1 ? 'you can math' : 'despair';`
+
+This statement assigns the string `'you can math'` to the variable `canMath` because the expression preceding the question mark was evaluated as true. This statement is in some ways equivalent to the snippet below.
+
+```javascript
+let canMath;
+if (1 === 1) { canMath = 'you can math'; }
+else { canMath = 'despair'; }
+
+// as you can see, there are obvious advantages to using the ternary expression in this case
+// using this syntax it would be impossible to assign canMath as a constant.
+// using the shortened if/else statements like this will not allow you to declare variables.
+// this syntax has it's purpose, but for simple cases like this the ternary is superior.
+```
+The ternary expression will always return the value to the left of the colon if true, and the right if false. Ternary expressions are the ideal way to conditionally render react components in 'simple' cases.
+```javascript
+render() {
+  return (
+    {
+      booleanVariable ? 
+        <p>booleanVariable is true</p>
+        :
+        <p>booleanVariable is false</p>
+    }
+  )
+}
+```
+
+This works well, but if the logic behind the conditional rendering of the components is more complex, needs to evaluate more than one expression (if/if else/esle/switch/etc...), then you should move this logic into a method that will return the desired component instead. Generally speaking, nested ternary statements work, but should not be used because they become very hard to read.
+```javascript
+// don't do this
+const bool1 = true;
+const bool2 = false;
+const bool3 = false;
+
+const whatEvenIsThis = bool1 : (bool2 ? 'huh?' : (bool3 ? 'idek' : 'ugh...')) : '=('
+
+// use if else statements, or if else statements combined with ternaries for this kind of thing.
+
+// i'd advise against doing these as well:
+
+// this doesn't read well:
+
+const num = if (false) 5 else if (false) 7 else 6;
+
+// neither does this:
+
+const num = if (true) 5 > 4 ? 5 : 4 else 'i give up';
+
+
+// in the face of complicated boolean logic, don't be afraid to use normal if else statments.
+```
+As you've likely noticed above, we can now use implicit return if else statements! While this is cool, it tends to make longer lines than ternary statements do. 
+The ideal use cases for these i've found are usually function and constructor calls.
+
+`if (err) throw error`
+
+The above does not work within a ternary, so this is ideal. 
+
+`if (true) callFunction() else callOtherFunction()`
+
+There is nothing alarmingly wrong with this one, but look what we can do with ternaries!
+
+`(true ? callFunction : callOtherFunction)()`
+
+The parentheses at the end are necessary, as it would immediately invoke the functions if they were inside of the ternary, and if they were absent the ternary would only return a reference to the function. (note that returning the reference may be useful in some cases).
+Im not sure which is considered to be good practice so I would implore you to use the ternary version for the project if you need to just to keep things consistent. DO, however, use the if (err) syntax for calling constructors and throwing errors, as that will not work withing the ternary. Unless..
+
+`cons obj = new (bool ? Class1 : Class2)()`
+
+But i would avoid that as it may lead someone to believe the conditional statement is a constructor, and it would be impossible to pass different arguments conditionally to the constructors. You should probably do this:
+
+`const obj = if(bool) new Class1(args1) else new Class2(args2)`
+
+...or just use normal if/else blocks. that's usually ok UNLESS you are making the statement within an implicit return function/return, ie in implicit return arrow functions or an implicit return statement.
 
 # code style
 **use eslint**
