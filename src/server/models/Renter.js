@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const RENTER = sequelize.define('RENTER', {
+  const Renter = sequelize.define('Renter', {
     id: {
       type: DataTypes.UUIDV4,
       primaryKey: true,
@@ -35,25 +35,25 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  RENTER.associate = (models) => {
-    // We're saying that a RENTER should belong to an Author
-    // A RENTER can't be created without an Author due to the foreign key constraint
-    RENTER.hasMany(models.RENTAL_AGREEMENT, {
+  Renter.associate = (models) => {
+    // We're saying that a Renter should belong to an Author
+    // A Renter can't be created without an Author due to the foreign key constraint
+    Renter.hasMany(models.RentalAgreement, {
       onDelete: 'cascade'
     });
 
-    RENTER.belongsTo(models.USER, {
+    Renter.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
     });
 
-    RENTER.belongsTo(models.POPUP_CATEGORY, {
+    Renter.belongsTo(models.PopupCategory, {
       foreignKey: {
         allowNull: false
       }
     });
   };
 
-  return RENTER;
+  return Renter;
 };

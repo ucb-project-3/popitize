@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const POPUP = sequelize.define('POPUP', {
+  const Popup = sequelize.define('Popup', {
     id: {
       type: DataTypes.UUIDV4,
       primaryKey: true,
@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUIDV4,
       allowNull: false,
     },
-    POPUP_category: {
+    Popup_category: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -39,25 +39,25 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  POPUP.associate = (models) => {
-    // We're saying that a POPUP should belong to an Author
-    // A POPUP can't be created without an Author due to the foreign key constraint
-    POPUP.hasMany(models.RENTAL_AGREEMENT, {
+  Popup.associate = (models) => {
+    // We're saying that a Popup should belong to an Author
+    // A Popup can't be created without an Author due to the foreign key constraint
+    Popup.hasMany(models.RentalAgreement, {
       onDelete: 'cascade'
     });
 
-    POPUP.belongsTo(models.HOST, {
+    Popup.belongsTo(models.Host, {
       foreignKey: {
         allowNull: false
       }
     });
 
-    POPUP.belongsTo(models.POPUP_CATEGORY, {
+    Popup.belongsTo(models.PopupCategory, {
       foreignKey: {
         allowNull: false
       }
     });
   };
 
-  return POPUP;
+  return Popup;
 };

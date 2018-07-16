@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const HOST = sequelize.define('HOST', {
-    // Giving the HOST model a name of type STRING
+  const Host = sequelize.define('Host', {
+    // Giving the Host model a name of type STRING
     id: {
       type: DataTypes.UUIDV4,
       primaryKey: true
@@ -37,20 +37,20 @@ module.exports = (sequelize, DataTypes) => {
     s_adress_2: { type: DataTypes.STRING(128) }
   });
 
-  HOST.associate = (models) => {
-    // Associating HOST with Popups
-    // When an HOST is deleted, also delete any associated Popups
-    HOST.hasMany(models.Popup, {
+  Host.associate = (models) => {
+    // Associating Host with Popups
+    // When an Host is deleted, also delete any associated Popups
+    Host.hasMany(models.Popup, {
       onDelete: 'cascade'
     });
 
-    HOST.belongsTo(models.User, {
+    Host.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
     });
   };
 
-  return HOST;
+  return Host;
 };
 
