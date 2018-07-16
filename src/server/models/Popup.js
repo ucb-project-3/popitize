@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Popup = sequelize.define('Popup', {
     id: {
-      type: DataTypes.UUIDV4,
+      type: DataTypes.UUID,
       primaryKey: true,
-      allowNull: false,
+      defualt: DataTypes.UUIDV4,
     },
     host_id: {
-      type: DataTypes.UUIDV4,
+      type: DataTypes.UUID,
       allowNull: false,
     },
     Popup_category: {

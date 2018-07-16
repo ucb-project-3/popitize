@@ -1,10 +1,26 @@
 module.exports = (sequelize, DataTypes) => {
   const RentalAgreement = sequelize.define('RentalAgreement', {
-    id: { type: DataTypes.UUIDV4, primaryKey: true, allowNull: false },
-    renter_id: { type: DataTypes.UUIDV4, allowNull: false },
-    popup_id: { type: DataTypes.UUIDV4, allowNull: false },
-    total_rent: { type: DataTypes.INTEGER, allowNull: false },
-    rental_period: { type: DataTypes.DATE, allowNull: false }
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      default: DataTypes.UUIDV4
+    },
+    renter_id: {
+      type: DataTypes.UUID,
+      allowNull: false
+    },
+    popup_id: {
+      type: DataTypes.UUID,
+      allowNull: false
+    },
+    total_rent: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    rental_period: {
+      type: DataTypes.DATE,
+      allowNull: false
+    }
 
   });
 

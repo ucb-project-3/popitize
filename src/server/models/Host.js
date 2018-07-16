@@ -2,11 +2,12 @@ module.exports = (sequelize, DataTypes) => {
   const Host = sequelize.define('Host', {
     // Giving the Host model a name of type STRING
     id: {
-      type: DataTypes.UUIDV4,
-      primaryKey: true
+      type: DataTypes.UUID,
+      primaryKey: true,
+      default: DataTypes.UUIDV4,
     },
     user_id: {
-      type: DataTypes.UUIDV4,
+      type: DataTypes.UUID,
       allowNull: false
     },
     total_store_length: {

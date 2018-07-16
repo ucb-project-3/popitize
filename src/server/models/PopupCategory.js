@@ -1,9 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const PopupCategory = sequelize.define('PopupCategory', {
     id: {
-      type: DataTypes.UUIDV4,
+      type: DataTypes.UUID,
       primaryKey: true,
-      allowNull: false
+      default: DataTypes.UUIDV4,
     },
     category_name: {
       type: DataTypes.STRING(48)

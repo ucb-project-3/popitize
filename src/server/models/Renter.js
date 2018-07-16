@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Renter = sequelize.define('Renter', {
     id: {
-      type: DataTypes.UUIDV4,
+      type: DataTypes.UUID,
       primaryKey: true,
-      allowNull: false
+      defualt: DataTypes.UUIDV4
     },
     user_id: {
-      type: DataTypes.UUIDV4,
+      type: DataTypes.UUID,
       allowNull: false
     },
     popup_category: {
