@@ -5,10 +5,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       primaryKey: true,
       default: DataTypes.UUIDV4,
+      unique: true,
     },
     email: {
       type: DataTypes.STRING(128),
-      allowNull: false
+      allowNull: false,
+      unique: true,
     },
     password: {
       type: DataTypes.STRING(128),
@@ -47,10 +49,14 @@ module.exports = (sequelize, DataTypes) => {
     // Associating User with Host
     // When an User is deleted, also delete any associated Host
     User.hasMany(models.Host, {
+      foreignKey: 'user_id',
+      sourceKey: 'id',
       onDelete: 'cascade'
     });
 
     User.hasMany(models.Renter, {
+      foreignKey: 'user_id',
+      sourceKey: 'id',
       onDelete: 'cascade'
     });
   };

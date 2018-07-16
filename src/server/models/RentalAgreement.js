@@ -6,14 +6,14 @@ module.exports = (sequelize, DataTypes) => {
       default: DataTypes.UUIDV4,
       unique: true,
     },
-    renter_id: {
-      type: DataTypes.UUID,
-      allowNull: false
-    },
-    popup_id: {
-      type: DataTypes.UUID,
-      allowNull: false
-    },
+    // renter_id: {
+    //   type: DataTypes.UUID,
+    //   allowNull: false
+    // },
+    // popup_id: {
+    //   type: DataTypes.UUID,
+    //   allowNull: false
+    // },
     total_rent: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -30,12 +30,14 @@ module.exports = (sequelize, DataTypes) => {
     // A RentalAgreement can't be created without an Author due to the foreign key constraint
     RentalAgreement.belongsTo(models.Renter, {
       foreignKey: {
+        name: 'renter_id',
         allowNull: false
       }
     });
 
     RentalAgreement.belongsTo(models.Popup, {
       foreignKey: {
+        name: 'popup_id',
         allowNull: false
       }
     });

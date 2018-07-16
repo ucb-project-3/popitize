@@ -5,11 +5,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       primaryKey: true,
       default: DataTypes.UUIDV4,
+      unique: 'true',
     },
-    user_id: {
-      type: DataTypes.UUID,
-      allowNull: false
-    },
+    // user_id: {
+    //   type: DataTypes.UUID,
+    //   allowNull: false
+    // },
     total_store_length: {
       type: DataTypes.DECIMAL(8, 2),
       primaryKey: true,
@@ -42,13 +43,18 @@ module.exports = (sequelize, DataTypes) => {
     // Associating Host with Popups
     // When an Host is deleted, also delete any associated Popups
     Host.hasMany(models.Popup, {
+      foreignKey: 'host_id',
+      sourceKey: 'id',
       onDelete: 'cascade'
     });
 
     Host.belongsTo(models.User, {
       foreignKey: {
-        allowNull: false
-      }
+        name: 'user_id',
+        type: DataTypes.UUID,
+        allowNull: false,
+      },
+      targetKey: 'id',
     });
   };
 

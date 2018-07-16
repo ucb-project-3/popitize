@@ -4,11 +4,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       primaryKey: true,
       defualt: DataTypes.UUIDV4,
+      unique: true,
     },
-    host_id: {
-      type: DataTypes.UUID,
-      allowNull: false,
-    },
+    // host_id: {
+    //   type: DataTypes.UUID,
+    //   allowNull: false,
+    // },
     Popup_category: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -42,20 +43,24 @@ module.exports = (sequelize, DataTypes) => {
   Popup.associate = (models) => {
     // We're saying that a Popup should belong to an Author
     // A Popup can't be created without an Author due to the foreign key constraint
-    Popup.hasMany(models.RentalAgreement, {
-      onDelete: 'cascade'
-    });
+    // Popup.hasMany(models.RentalAgreement, {
+    //   onDelete: 'cascade'
+    // });
 
     Popup.belongsTo(models.Host, {
       foreignKey: {
-        allowNull: false
-      }
+        name: 'host_id',
+        allowNull: false,
+      },
+      targetKey: 'id',
     });
 
     Popup.belongsTo(models.PopupCategory, {
       foreignKey: {
-        allowNull: false
-      }
+        name: 'category_id',
+        allowNull: false,
+      },
+      targetKey: 'id',
     });
   };
 
