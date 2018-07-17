@@ -1,6 +1,7 @@
 const express = require('express');
 const parser = require('body-parser');
 const morgan = require('morgan');
+const db = require('./models');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -12,6 +13,9 @@ app.use(parser.text());
 
 app.use('/', express.static('../../build'));
 
-app.listen(PORT, () => {
-  console.log('Server listening on localhost:8080');
-});
+db.sequelize.sync({ force: true })
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log('Server listening on localhost:8080');
+    });
+  });
