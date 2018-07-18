@@ -36,7 +36,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL(8, 0),
       allowNull: false
     },
-    s_adress_2: { type: DataTypes.STRING(128) }
+    s_adress_2: {
+      type: DataTypes.STRING(128)
+    }
   });
 
   Host.associate = (models) => {
