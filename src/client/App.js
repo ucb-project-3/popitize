@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import store from './store';
 
-
 class App extends React.Component {
   componentWillMount() {
     console.log('App mounting...');

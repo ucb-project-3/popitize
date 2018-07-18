@@ -17,8 +17,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     age_range: {
+      types: DataTypes.BOOLEAN,
+    },
+    age_range_lower: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
+    },
+    age_range_higher: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     },
     credit_rating: {
       type: DataTypes.INTEGER,
