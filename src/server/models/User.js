@@ -12,20 +12,21 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
+    first_name: {
+      type: DataTypes.STRING(25),
+      allowNull: false,
+    },
+    last_name: {
+      type: DataTypes.STRING(25),
+      allowNull: false,
+    },
     password: {
       type: DataTypes.STRING(128),
       allowNull: false
     },
     age_range: {
-      types: DataTypes.BOOLEAN,
-    },
-    age_range_lower: {
       type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    age_range_higher: {
-      type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false,
     },
     credit_rating: {
       type: DataTypes.INTEGER,
