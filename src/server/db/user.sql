@@ -10,4 +10,4 @@ VALUES
 ("raiben@gmail.com", "Rai", "Man", "shotsoclock", 60, 800, "151 3rd street", "San Francisco", "CA", 94103), 
 ("emma@gmail.com", "Emma", "TA", "rockin", 60, 680, "620 2nd street", "San Francisco", "CA", 94107), 
 ("coop@gmail.com", "Coop", "Sub", "iteachyou123", 60, 640, "170 O'Farrell Street", "San Francisco", "CA", 94102), 
-("berkeley@gmail.com", "Berkeley", "Hamster", "unaccountablehamsters", 60, 720, "160 Main street", "San Francisco", "CA", 94102), 
+("berkeley@gmail.com", "Berkeley", "Hamster", "unaccountablehamsters", 60, 720, "160 Main street", "San Francisco", "CA", 94102); 
