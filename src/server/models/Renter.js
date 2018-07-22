@@ -3,45 +3,33 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      default: DataTypes.UUIDV4,
+      defaultValue: DataTypes.UUIDV4,
       unique: true,
     },
-    // user_id: {
-    //   type: DataTypes.UUID,
+    user_id: {
+      type: DataTypes.UUID,
+      allowNull: false
+    },
+    // desired_begin_date: {
+    //   type: DataTypes.DATE,
     //   allowNull: false
     // },
-    popup_category: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    popup_description: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    desired_begin_date: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    desired_end_date: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    isActive: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
-    },
-    rental_rate: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    }
+    // desired_end_date: {
+    //   type: DataTypes.DATE,
+    //   allowNull: false
+    // },
+    // isActive: {
+    //   type: DataTypes.BOOLEAN,
+    //   allowNull: false
+    // },
   });
 
   Renter.associate = (models) => {
     // We're saying that a Renter should belong to an Author
     // A Renter can't be created without an Author due to the foreign key constraint
-    // Renter.hasMany(models.RentalAgreement, {
-    //   onDelete: 'cascade'
-    // });
+    Renter.hasMany(models.RentalAgreement, {
+      onDelete: 'cascade'
+    });
 
     Renter.belongsTo(models.User, {
       foreignKey: {
@@ -51,13 +39,19 @@ module.exports = (sequelize, DataTypes) => {
       targetKey: 'id',
     });
 
-    Renter.belongsTo(models.PopupCategory, {
-      foreignKey: {
-        name: 'category_id',
-        allowNull: true,
-      },
-      targetKey: 'id',
+    Renter.hasMany(models.Popup, {
+      foreignKey: 'popup_id',
+      sourceKey: 'id',
+      onDelete: 'cascade'
     });
+
+    // Renter.belongsTo(models.PopupCategory, {
+    //   foreignKey: {
+    //     name: 'category_id',
+    //     allowNull: true,
+    //   },
+    //   targetKey: 'id',
+    // });
   };
 
   return Renter;

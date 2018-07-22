@@ -137,6 +137,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_city: 'San Francisco',
       s_state: 'ca',
       s_zip: 94107,
+      rental_rate: 3000,
     },
     {
       user_id: userIds.pop(),
@@ -146,6 +147,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_city: 'San Francisco',
       s_state: 'ca',
       s_zip: 94107,
+      rental_rate: 3000,
     },
     {
       user_id: userIds.pop(),
@@ -155,6 +157,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_city: 'San Francisco',
       s_state: 'ca',
       s_zip: 94107,
+      rental_rate: 3000,
     },
     {
       user_id: userIds.pop(),
@@ -164,6 +167,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_city: 'San Francisco',
       s_state: 'ca',
       s_zip: 94107,
+      rental_rate: 3000,
     },
     {
       user_id: userIds.pop(),
@@ -173,6 +177,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_city: 'San Francisco',
       s_state: 'ca',
       s_zip: 94107,
+      rental_rate: 3000,
     },
     {
       user_id: userIds.pop(),
@@ -182,6 +187,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_city: 'San Francisco',
       s_state: 'ca',
       s_zip: 94107,
+      rental_rate: 3000,
     },
     {
       user_id: userIds.pop(),
@@ -191,6 +197,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_city: 'San Francisco',
       s_state: 'ca',
       s_zip: 94107,
+      rental_rate: 3000,
     },
     {
       user_id: userIds.pop(),
@@ -200,6 +207,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_city: 'San Francisco',
       s_state: 'ca',
       s_zip: 94107,
+      rental_rate: 3000,
     },
     {
       user_id: userIds.pop(),
@@ -209,6 +217,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_city: 'San Francisco',
       s_state: 'ca',
       s_zip: 94107,
+      rental_rate: 3000,
     },
     {
       user_id: userIds.pop(),
@@ -218,14 +227,51 @@ const seedHosts = userIds => new Promise(resolve => (
       s_city: 'San Francisco',
       s_state: 'ca',
       s_zip: 94107,
+      rental_rate: 3000,
     },
   ], {})
     .then(() => resolve())
     .catch((err) => { throw new Error(err); })
 ));
 
+const seedRenters = userids => new Promise(resolve => (
+  db.Renter.bulkCreate([
+    {
+      user_id: userids.pop(),
+    },
+    {
+      user_id: userids.pop(),
+    },
+    {
+      user_id: userids.pop(),
+    },
+    {
+      user_id: userids.pop(),
+    },
+    {
+      user_id: userids.pop(),
+    },
+    {
+      user_id: userids.pop(),
+    },
+    {
+      user_id: userids.pop(),
+    },
+    {
+      user_id: userids.pop(),
+    },
+    {
+      user_id: userids.pop(),
+    },
+    {
+      user_id: userids.pop(),
+    },
+  ], {})
+));
+
 module.exports = async () => {
   const userIds = await seedUsers();
   console.log('userids:', userIds.length);
-  seedHosts([...userIds]);
+  await seedHosts([...userIds]);
+  await seedRenters([...userIds]);
 };

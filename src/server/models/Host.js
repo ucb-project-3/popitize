@@ -38,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     s_adress_2: {
       type: DataTypes.STRING(128)
+    },
+    rental_rate: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
 
@@ -47,6 +51,10 @@ module.exports = (sequelize, DataTypes) => {
     Host.hasMany(models.Popup, {
       foreignKey: 'host_id',
       sourceKey: 'id',
+      onDelete: 'cascade'
+    });
+
+    Host.hasMany(models.RentalAgreement, {
       onDelete: 'cascade'
     });
 
