@@ -1,3 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 // ** do not touch ^ **
+
+@import './styles/reset';
+@import './styles/variables';
+@import './styles/responsiveFonts';
+@import './styles/layout';
+@import './styles/typography';
