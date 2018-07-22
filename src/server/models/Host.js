@@ -4,13 +4,13 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      default: DataTypes.UUIDV4,
-      unique: 'true',
+      defaultValue: DataTypes.UUIDV4,
+      unique: true,
     },
-    // user_id: {
-    //   type: DataTypes.UUID,
-    //   allowNull: false
-    // },
+    user_id: {
+      type: DataTypes.UUID,
+      allowNull: false
+    },
     total_store_length: {
       type: DataTypes.DECIMAL(8, 2),
       primaryKey: true,

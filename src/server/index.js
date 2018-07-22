@@ -2,7 +2,7 @@ const express = require('express');
 const parser = require('body-parser');
 const morgan = require('morgan');
 const db = require('./models');
-const userSeed = require('./seeders/user_seed').up;
+const userSeed = require('./seeders/user_seed');
 
 const PORT = process.env.PORT || 8080;
 const app = express();

@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
     Renter.belongsTo(models.PopupCategory, {
       foreignKey: {
         name: 'category_id',
-        allowNull: false,
+        allowNull: true,
       },
       targetKey: 'id',
     });
