@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginForm from '../presentational/LoginForm';
+import LoginForm from '../presentational/Login/LoginForm';
 
 class Login extends React.Component {
   constructor(props) {
