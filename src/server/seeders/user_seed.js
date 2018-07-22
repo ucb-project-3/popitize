@@ -1,7 +1,7 @@
 const db = require('../models');
 
 module.exports = {
-  up: (queryInterface, Sequelize) =>
+  up: () =>
     // Add altering commands here.
     // Return a promise to correctly handle asynchronicity.
 
@@ -126,15 +126,5 @@ module.exports = {
         state: 'ca',
         zip: '94107',
       },
-    ]),
-
-  down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('Person', null, {});
-    */
-  }
+    ], {}),
 };
