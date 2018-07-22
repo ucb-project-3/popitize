@@ -68,7 +68,7 @@ module.exports = (sequelize, DataTypes) => {
         name: 'renter_id',
         allowNull: 'false'
       },
-    })
+    });
 
     Popup.belongsTo(models.PopupCategory, {
       foreignKey: {
