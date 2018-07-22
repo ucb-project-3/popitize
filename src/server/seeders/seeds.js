@@ -267,6 +267,8 @@ const seedRenters = userids => new Promise(resolve => (
       user_id: userids.pop(),
     },
   ], {})
+    .then(() => resolve())
+    .catch((err) => { throw new Error(err); })
 ));
 
 module.exports = async () => {
