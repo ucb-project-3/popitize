@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "postgres",
-    "password": "test",
+    "password": "rampage",
     "database": "popitize",
     "host": "127.0.0.1",
     "port": "5432",
