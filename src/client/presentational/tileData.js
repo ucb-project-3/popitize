@@ -23,5 +23,5 @@ const mailFolderListItems = (
   </div>
 );
 
-export { mailFolderListItems };
+export default mailFolderListItems;
 
