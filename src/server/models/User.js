@@ -11,18 +11,56 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(128),
       allowNull: false,
       unique: true,
+      validate: {
+        len: {
+          args: [6, 128],
+          msg: 'Email length should be greater than 5 characters.'
+        },
+        isEmail: {
+          msg: 'Email must be a valid email address.'
+        }
+      }
     },
     first_name: {
       type: DataTypes.STRING(25),
       allowNull: false,
+      validate: {
+        len: {
+          args: [1, 25],
+          msg: 'First name must not be blank and less than 25 characters long',
+        },
+        isAlpha: {
+          msg: 'First name should only contain letters.'
+        }
+      }
     },
     last_name: {
       type: DataTypes.STRING(25),
       allowNull: false,
+      validate: {
+        len: {
+          args: [1, 25],
+          msg: 'Last name must not be blank and less than 25 characters long',
+        },
+        isAlpha: {
+          msg: 'Last name should only contain letters.'
+        }
+      }
     },
     password: {
       type: DataTypes.STRING(128),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: {
+          args: [6, 128],
+          msg: 'password must be at least 6 characters long.'
+        },
+        fn: (val) => {
+          if (!/[a-z]/.test(val)) throw new Error('Password must contain at least one lower case letter');
+          if (!/[A-Z]/.test(val)) throw new Error('Password must contain at least one Upper case letter');
+          if (!/(!|?|_|-|$|#|%)/.test(val)) throw new Error('Password must contain at least one special character');
+        }
+      }
     },
     age_range: {
       type: DataTypes.INTEGER,
