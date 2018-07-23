@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      default: DataTypes.UUIDV4,
+      defaultValue: DataTypes.UUIDV4,
       unique: true,
     },
     total_rent: {
