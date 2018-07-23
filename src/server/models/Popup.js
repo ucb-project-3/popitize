@@ -3,15 +3,23 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      defualt: DataTypes.UUIDV4,
+      defaultValue: DataTypes.UUIDV4,
       unique: true,
     },
-    // host_id: {
-    //   type: DataTypes.UUID,
-    //   allowNull: false,
-    // },
+    host_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
+    renter_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
     Popup_category: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    popup_description: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     p_length: {
@@ -53,6 +61,13 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       targetKey: 'id',
+    });
+
+    Popup.belongsTo(models.Renter, {
+      foreignKey: {
+        name: 'renter_id',
+        allowNull: 'false'
+      },
     });
 
     Popup.belongsTo(models.PopupCategory, {
