@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from '../presentational/LoginForm';
+import { connectLogin } from '../util/connects';
 
 class Login extends React.Component {
   constructor(props) {
@@ -40,4 +41,4 @@ class Login extends React.Component {
   };
 }
 
-export default Login;
+export default connectLogin(Login);

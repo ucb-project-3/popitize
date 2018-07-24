@@ -14,10 +14,31 @@ app.use(parser.text());
 
 app.use('/', express.static('../../build'));
 
-db.sequelize.sync({ force: true })
-  .then(() => {
-    app.listen(PORT, () => {
-      userSeed();
-      console.log('Server listening on localhost:8080');
+if (!(process.env.NODE_ENV === 'test')) {
+  db.sequelize.sync({ force: true })
+    .then(() => {
+      app.listen(PORT, () => {
+        userSeed();
+        console.log('Server listening on localhost:8080');
+      });
     });
-  });
+}
+
+// export server for testing
+module.exports = {
+  noDb: () => (
+    app.listen(PORT)
+  ),
+
+  dbNoSeed: async () => {
+    await db.sequelize.sync({ force: true });
+    return app.listen(PORT);
+  },
+
+  dbSeed: async () => {
+    await db.sequelize.sync({ force: true });
+    await userSeed();
+    return app.listen(PORT);
+  }
+};
+
