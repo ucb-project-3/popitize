@@ -8,12 +8,14 @@ describe('client new user validator', () => {
     expect(!!result.error).to.equal(true);
     done();
   });
+
   it('should report error when passed an array', (done) => {
     const array = [];
     const result = newUserValidator(array);
     expect(!!result.error).to.equal(true);
     done();
   });
+
   it('should report error when invalid object schema', (done) => {
     const wrong = {
       name: 'david',
@@ -24,6 +26,7 @@ describe('client new user validator', () => {
     expect(!!result.error).to.equal(true);
     done();
   });
+
   it('should not report errors when passed legal values', (done) => {
     const right = {
       email: 'ben@ben.co.uk',
@@ -40,9 +43,10 @@ describe('client new user validator', () => {
     const result = newUserValidator(right);
     expect(!!result.error).to.equal(false);
     done();
-  })
+  });
+
   it('should report error when bad email', (done) => {
-    const right = {
+    const bademail = {
       email: 'ben so bad',
       first_name: 'Benjamin',
       last_name: 'Rose',
@@ -54,12 +58,13 @@ describe('client new user validator', () => {
       state: 'ca',
       zip: 88443,
     };
-    const result = newUserValidator(right);
+    const result = newUserValidator(bademail);
     expect(!!result.error).to.equal(true);
     done();
-  })
+  });
+
   it('should report error when bad password', (done) => {
-    const right = {
+    const badpass = {
       email: 'ben@jamin.com',
       first_name: 'Benjamin',
       last_name: 'Rose',
@@ -71,8 +76,8 @@ describe('client new user validator', () => {
       state: 'ca',
       zip: 88443,
     };
-    const result = newUserValidator(right);
+    const result = newUserValidator(badpass);
     expect(!!result.error).to.equal(true);
     done();
-  })
+  });
 });

@@ -1,4 +1,4 @@
-module.exports = (
+export default (
   state = {
     status: {
       fetching: false,
@@ -14,7 +14,7 @@ module.exports = (
   },
   action = { type: null, payload: null }
 ) => {
-  if (action.type === 'FETCH_USER') {
+  if (action.type === 'CREATE_USER') {
     return {
       ...state,
       status: {
@@ -23,7 +23,7 @@ module.exports = (
         err: null
       }
     };
-  } else if (action.type === 'FETCH_USER_SUCCESS') {
+  } else if (action.type === 'CREATE_USER_SUCCESS') {
     return {
       ...state,
       ...action.payload,
@@ -33,7 +33,7 @@ module.exports = (
         err: null,
       }
     };
-  } else if (action.payload === 'FETCH_USER_CATCH') {
+  } else if (action.payload === 'CREATE_USER_ERR') {
     return {
       ...state,
       status: {
