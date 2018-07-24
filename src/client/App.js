@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider } from '@material-ui/core';
 // import ListItem from '@material-ui/core/ListItem';
@@ -28,7 +28,9 @@ class App extends React.Component {
             <Header />
             <Router>
               <Switch>
+                <Route path="/dashboard" component={() => <p>Im the dashboard look at me</p>} />
                 <Route exact path="/" component={Login} />
+
               </Switch>
             </Router>
           </React.Fragment>
