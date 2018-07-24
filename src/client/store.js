@@ -5,5 +5,5 @@ import reducers from './reducers';
 
 export default createStore(
   reducers,
-  applyMiddleware(logger, thunk),
+  applyMiddleware(thunk, logger),
 );
