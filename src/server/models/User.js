@@ -55,10 +55,11 @@ module.exports = (sequelize, DataTypes) => {
           args: [6, 128],
           msg: 'password must be at least 6 characters long.'
         },
-        fn: (val) => {
+        isValidPass(val) {
           if (!/[a-z]/.test(val)) throw new Error('Password must contain at least one lower case letter');
           if (!/[A-Z]/.test(val)) throw new Error('Password must contain at least one Upper case letter');
           if (!/(!|?|_|-|$|#|%)/.test(val)) throw new Error('Password must contain at least one special character');
+          throw new Error('it worked');
         }
       }
     },
