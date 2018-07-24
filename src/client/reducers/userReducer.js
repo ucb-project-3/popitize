@@ -41,7 +41,7 @@ module.exports = (
         fetched: false,
         err: action.payload,
       }
-    }
+    };
   }
 
   return { ...state };
