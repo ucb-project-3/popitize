@@ -3,3 +3,4 @@
 .env
 dist
 node_modules
+src/server/config/config.json
