@@ -2,7 +2,13 @@ import React from 'react';
 import { TextField, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
+
+
 const LoginForm = props => (
+
+  <div>
+<h1> Log In </h1>
+
   <form onSubmit={props.handleSubmit}>
     <TextField
       autoFocus
@@ -26,6 +32,7 @@ const LoginForm = props => (
     />
     <Button type="submit">Click me</Button>
   </form>
+  </div>
 );
 
 LoginForm.propTypes = {
