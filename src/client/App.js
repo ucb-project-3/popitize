@@ -4,6 +4,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider } from '@material-ui/core';
 // import ListItem from '@material-ui/core/ListItem';
+// import RentalDashboard from './containers/RentalDashboard';
 import Login from './containers/Login';
 import Header from './presentational/Header';
 import store from './store';
@@ -28,9 +29,8 @@ class App extends React.Component {
             <Header />
             <Router>
               <Switch>
-                <Route path="/dashboard" component={() => <p>Im the dashboard look at me</p>} />
+                {/* <Route path="/dashboard" component={RentalDashboard} /> */}
                 <Route exact path="/" component={Login} />
-
               </Switch>
             </Router>
           </React.Fragment>
