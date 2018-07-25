@@ -48,3 +48,6 @@ Back End:
 Hosting:
 * AWS
 
+## Authors
+Ben Rose, James Chambers, Anna Khardina-Vaisman, Alice Guillaume, Sevil Rao
+
