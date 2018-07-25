@@ -2,6 +2,8 @@ const express = require('express');
 const parser = require('body-parser');
 const morgan = require('morgan');
 const db = require('./models');
+const passport = require('passport')
+const passportConfig = require('./config/passport/passport')
 const userSeed = require('./seeders/seeds');
 
 const PORT = process.env.PORT || 8080;
