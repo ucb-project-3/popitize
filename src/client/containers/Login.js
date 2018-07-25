@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from '../presentational/LoginForm';
+import { connectLogin } from '../util/connects';
 import SignupForm from '../presentational/SignupForm';
 import { TextField, Button } from '@material-ui/core';
 
@@ -78,4 +79,4 @@ class Login extends React.Component {
   };
 }
 
-export default Login;
+export default connectLogin(Login);
