@@ -1,6 +1,8 @@
 import React from 'react';
 import LoginForm from '../presentational/LoginForm';
 import { connectLogin } from '../util/connects';
+import SignupForm from '../presentational/SignupForm';
+import { TextField, Button } from '@material-ui/core';
 
 class Login extends React.Component {
   constructor(props) {
@@ -8,6 +10,19 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
+      first_name: '',
+      last_name: '',
+      age_range: '',
+      credit_rating: '',
+      address_1: '',
+      city: '',
+      state: '',
+      zip: '', 
+      address_2: '',
+      show_form: 'login'
+
+
+
     };
   }
 
@@ -20,7 +35,7 @@ class Login extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { email, password } = this.state;
+    const { email, password, first_name, last_name, age_range, credit_rating,address_1, city, state, zip, address_2 } = this.state;
     if (email.length < 4) {
       alert('email not long');
       return;
@@ -28,16 +43,39 @@ class Login extends React.Component {
     alert('form successfully submitted :}');
     console.log(email, password);
   }
-
+    changeForm = () =>{
+      if (this.state.show_form == "login")
+      {
+        this.setState({
+          show_form: "signup"
+        })
+      }
+      else{
+        this.setState({
+          show_form: "login"
+        })
+      }
+    }
   render = () => {
-    const { email, password } = this.state;
-    return (
-      <LoginForm
+    const { email, password,first_name, last_name, age_range, credit_rating,address_1, city, state, zip, address_2  } = this.state;
+    if (this.state.show_form == "login"){
+      return (<div><LoginForm
         handleInput={this.handleInput}
         handleSubmit={this.handleSubmit}
-        inputs={{ email, password }}
-      />
-    );
+        inputs={{ email, password}}
+      /><Button onClick={this.changeForm}>Show signup</Button></div>)
+      
+      
+    }
+
+    else{
+      return (<div><SignupForm
+        handleInput = {this.handleInput}
+        handleSubmit = {this.handleSubmit}
+        inputs={{ email, password, first_name, last_name, age_range, credit_rating,address_1, city, state, zip, address_2 }}
+      /><Button onClick={this.changeForm}>Show log in</Button></div>)   
+      
+    }
   };
 }
 
