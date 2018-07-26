@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Tabs, Tab, Button, Paper, Hidden } from '@material-ui/core';
-import { Md } from '../util/viewPort';
+import { Tabs, Tab, Button, Paper, Hidden, Grow } from '@material-ui/core';
 
 const DesktopNav = ({
   swipe,
@@ -23,29 +22,36 @@ const DesktopNav = ({
         <Tab disableRipple label="Popups" />
         <Tab disableRipple label="Profile" />
       </Tabs>
+
       <div style={{ padding: '.5rem' }}>
-        <Button
-          color="primary"
-          className="nav-button"
-          onClick={openRegister}
-          variant="raised"
-        >
+        <Grow in={index === 2}>
+          <Button
+            color="primary"
+            className="nav-button"
+            disabled={index !== 2}
+            onClick={openRegister}
+            variant="raised"
+          >
       Register
-        </Button>
+          </Button>
+        </Grow>
         <div
           style={{
           display: 'inline-block',
           width: '.5rem'
         }}
         />
-        <Button
-          color="primary"
-          variant="raised"
-          className="nav-button"
-          onClick={logout}
-        >
+        <Grow in={index === 2} timeout={600}>
+          <Button
+            color="primary"
+            variant="raised"
+            disabled={index !== 2}
+            className="nav-button"
+            onClick={logout}
+          >
       logout
-        </Button>
+          </Button>
+        </Grow>
       </div>
     </Paper>
   </Hidden>
