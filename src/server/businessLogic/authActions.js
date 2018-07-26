@@ -1,27 +1,37 @@
-import db from '../models';
+const db = require('../models');
 
-module.exports.createUser = user => (
-  new Promise(resolve => (
-    db.User.create(user)
+module.exports.createUser = userResponse => (
+  new Promise((resolve) => {
+    const user = db.User.build({ ...userResponse });
+    user.validate().then((err) => {
+      console.log('er', err);
+    });
+    // if (err) {
+    //   resolve(err);
+    // }
+    user.save()
       .then((User) => {
+        // console.log('saved', User);
         const {
+          id,
           first_name,
           last_name,
           email,
           age_range,
-        } = User;
+        } = User.dataValues;
 
         resolve({
+          id,
           first_name,
           last_name,
           email,
           age_range,
         });
       })
-      .catch((err) => {
-        console.log(err);
-        resolve(err);
-      })
-  ))
+      .catch((dbErr) => {
+        console.log('catching', dbErr);
+        throw new Error(dbErr);
+      });
+  })
 );
 
