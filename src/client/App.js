@@ -5,6 +5,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider } from '@material-ui/core';
 import Login from './containers/Login';
 import Hosts from './containers/Hosts';
+import Dashboard from './containers/Dashboard';
 import Header from './presentational/Header';
 import store from './store';
 // import RentalDashboard from './presentational/RentalDashboard';
@@ -29,8 +30,7 @@ class App extends React.Component {
             <Header />
             <Router>
               <Switch>
-                {/* <Route path="/dashboard" component={() =>
-                <p>Im the dashboard look at me</p>} /> */}
+                <Route path="/dashboard" component={Dashboard} />
                 <Route exact path="/" component={Login} />
                 <Route exact path="/hosts" component={Hosts} />
               </Switch>
