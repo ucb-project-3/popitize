@@ -21,6 +21,7 @@ app.use(parser.json());
 app.use(parser.text());
 
 app.use('/', express.static('../../build'));
+app.use(authRoutes);
 
 if (!(process.env.NODE_ENV === 'test')) {
   db.sequelize.sync({ force: true })
@@ -49,4 +50,3 @@ if (!(process.env.NODE_ENV === 'test')) {
 //     return app.listen(PORT);
 //   }
 // };
-
