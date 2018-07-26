@@ -33,10 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     s_zip: {
-      type: DataTypes.DECIMAL(8, 0),
+      type: DataTypes.INTEGER,
       allowNull: false
     },
-    s_adress_2: {
+    s_address_2: {
       type: DataTypes.STRING(128)
     },
     rental_rate: {
