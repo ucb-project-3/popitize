@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider } from '@material-ui/core';
-// import ListItem from '@material-ui/core/ListItem';
 import Login from './containers/Login';
 import Header from './presentational/Header';
 import store from './store';

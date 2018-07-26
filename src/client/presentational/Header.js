@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 // import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 // import mailFolderListItems from './tileData';
+import mainLogo from '../imgs/popitize3.png';
 
 const drawerWidth = 240;
 
@@ -86,9 +87,7 @@ class ResponsiveDrawer extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
-              Popitize
-            </Typography>
+            <img  src={mainLogo} alt="fireSpot"/>
           </Toolbar>
         </AppBar>
         {/* This here should be in a separate component */}
