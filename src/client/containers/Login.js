@@ -6,6 +6,8 @@ import { Button } from '@material-ui/core';
 import LoginForm from '../presentational/LoginForm';
 import SignupForm from '../presentational/SignupForm';
 import { connectLogin } from '../util/connects';
+import LoginSuccess from '../presentational/LoginSuccessDialog';
+import LoginFail from '../presentational/LoginFailureDialog';
 
 class Login extends React.Component {
   constructor(props) {
@@ -24,9 +26,18 @@ class Login extends React.Component {
         zip: '',
         address_2: '',
       },
-      showLogin: true
-
+      showLogin: true,
+      failure: false,
+      success: false,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user.email && nextProps.user.first_name) {
+      this.setState({ success: true });
+    } else if (nextProps.user.status.err && this.props.user.status.fetching) {
+      this.setState({ failure: true });
+    }
   }
 
   handleInput = (event, name) => {
@@ -41,8 +52,17 @@ class Login extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.newUser(this.state.form);
-    console.log(this.state.form);
+    if (this.state.showLogin) {
+      const { email, password } = this.state.form;
+      this.props.existingUser({ email, password });
+    } else {
+      this.props.newUser(this.state.form);
+    }
+  }
+
+  dismissFail = () => {
+    this.setState({ failure: false });
+    console.log('silencing error');
   }
 
   changeForm = () => {
@@ -51,6 +71,12 @@ class Login extends React.Component {
 
   render = () => (
     <div>
+      <LoginSuccess open={this.state.success} login={this.state.showLogin} />
+      <LoginFail
+        open={this.state.failure}
+        dismiss={this.dismissFail}
+        err={this.props.user.status.err}
+      />
       {
         this.state.showLogin === true ?
           <LoginForm

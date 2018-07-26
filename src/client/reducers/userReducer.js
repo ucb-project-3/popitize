@@ -33,7 +33,35 @@ export default (
         err: null,
       }
     };
-  } else if (action.payload === 'CREATE_USER_ERR') {
+  } else if (action.type === 'CREATE_USER_ERROR') {
+    return {
+      ...state,
+      status: {
+        fetching: false,
+        fetched: false,
+        err: action.payload,
+      }
+    };
+  } else if (action.type === 'AUTH_USER') {
+    return {
+      ...state,
+      status: {
+        fetching: true,
+        fetched: false,
+        err: null
+      }
+    };
+  } else if (action.type === 'AUTH_USER_SUCCESS') {
+    return {
+      ...state,
+      ...action.payload,
+      status: {
+        fetching: false,
+        fetched: true,
+        err: null,
+      }
+    };
+  } else if (action.type === 'AUTH_USER_ERROR') {
     return {
       ...state,
       status: {
