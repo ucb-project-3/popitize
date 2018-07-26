@@ -25,6 +25,7 @@ class Login extends React.Component {
         address_2: '',
       },
       showLogin: true
+
     };
   }
 
