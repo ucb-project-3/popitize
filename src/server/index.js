@@ -2,13 +2,14 @@ const express = require('express');
 const parser = require('body-parser');
 const morgan = require('morgan');
 const db = require('./models');
-const passport = require('passport');
-const session = require('express-session');
-const env = require('dotenv').load();
+const authRoutes = require('./controllers/authenticationRoutes')
 const userSeed = require('./seeders/seeds');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+
+const passport = require('passport');
+const session = require('express-session');
 
 app.use(morgan('combined'));
 app.use(parser.urlencoded({ extended: true }));
@@ -16,7 +17,7 @@ app.use(parser.json());
 app.use(parser.text());
 
 // For Passport
- 
+
 app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions

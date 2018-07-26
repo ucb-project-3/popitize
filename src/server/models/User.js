@@ -70,15 +70,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  User.hook('beforeCreate', (user, fn) => {
-    const salt = bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => salt);
-    bcrypt.hash(user.password, salt, null, (err, hash) => {
-      if (err) return next(err);
-      user.password = hash;
-      return fn(null, user);
-    });
-  });
-  
+  // User.hook('beforeCreate', (user, fn) => {
+  //   const salt = bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => salt);
+  //   bcrypt.hash(user.password, salt, null, (err, hash) => {
+  //     if (err) return next(err);
+  //     user.password = hash;
+  //     return fn(null, user);
+  //   });
+  // });
+
   User.associate = (models) => {
     // Associating User with Host
     // When an User is deleted, also delete any associated Host
