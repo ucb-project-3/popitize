@@ -2,23 +2,24 @@ const express = require('express');
 const parser = require('body-parser');
 const morgan = require('morgan');
 const db = require('./models');
-const passport = require('passport')
-const passportConfig = require('./config/passport/passport')
+const passport = require('passport');
+const session = require('express-session');
+const env = require('dotenv').load();
 const userSeed = require('./seeders/seeds');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
-const SALT_WORK_FACTOR = 12;
 
 app.use(morgan('combined'));
 app.use(parser.urlencoded({ extended: true }));
-app.use(express.bodyParser());
-app.use(express.cookieParser());
-app.use(express.session({ secret: 'thisisasecret' }));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(parser.json());
 app.use(parser.text());
+
+// For Passport
+ 
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 
 app.use('/', express.static('../../build'));
 app.use(authRoutes);
