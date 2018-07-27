@@ -2,9 +2,11 @@ const express = require('express');
 const parser = require('body-parser');
 const morgan = require('morgan');
 const db = require('./models');
+
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./controllers/authenticationRoutes');
 const userSeed = require('./seeders/seeds');
+const path = require('path');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -18,6 +20,7 @@ app.use(cookieParser());
 app.use(parser.json());
 app.use(parser.text());
 
+app.use('/', express.static(path.join(__dirname, '../../dist')));
 // For Passport
 
 app.use(session({
@@ -28,7 +31,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-app.use('/', express.static('../../build'));
 app.use(authRoutes);
 
 if (!(process.env.NODE_ENV === 'test')) {
