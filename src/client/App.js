@@ -8,7 +8,7 @@ import Hosts from './containers/Hosts';
 import Dashboard from './containers/Dashboard';
 import Header from './presentational/Header';
 import store from './store';
-import PayPal from './containers/PaypalSetup';
+// import PayPal from './containers/PaypalSetup';
 
 const theme = createMuiTheme({
   palette: {
@@ -33,7 +33,7 @@ class App extends React.Component {
                 <Route path="/dashboard" component={Dashboard} />
                 <Route exact path="/" component={Login} />
                 <Route exact path="/hosts" component={Hosts} />
-                <Route exact path="/paypal" component={PayPal} />
+                {/* <Route exact path="/paypal" component={PayPal} /> */}
               </Switch>
             </Router>
           </React.Fragment>
