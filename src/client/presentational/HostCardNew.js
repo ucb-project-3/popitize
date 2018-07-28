@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
   card: {
     maxWidth: 345,
+    margin: 'auto',
   },
   media: {
     height: 0,
@@ -18,22 +19,28 @@ const styles = {
   },
 };
 
-function SimpleMediaCard(props) {
+const SimpleMediaCard = (props) =>  {
   const { classes } = props;
   return (
-    <div>
+    <div className="card">
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image="https://www.thesprucepets.com/thmb/n25vOYrJ9ntY6WJXEMsOEuccxo4=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-605382633-58b1dc925f9b5860463bf7d0.jpg"
           title="Charming Pop Up Space"
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            Charming Space
+            {props.s_address_1}
           </Typography>
           <Typography component="p">
-            Awesome space for pop up shops. 
+            {props.s_city}
+          </Typography>
+          <Typography component="p">
+            {props.s_state}
+          </Typography>
+          <Typography component="p">
+            square feet: {props.total_store_width * props.total_store_length} sqft
           </Typography>
         </CardContent>
         <CardActions>
@@ -53,4 +60,4 @@ SimpleMediaCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default SimpleMediaCard;
+export default withStyles(styles)(SimpleMediaCard);

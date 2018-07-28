@@ -1,9 +1,10 @@
 import React from 'react';
-import HostCard from '../presentational/Hosts/HostCard';
+import axios from 'axios';
+import HostCardNew from '../presentational/HostCardNew';
 
 class Host extends React.Component {
     state = {
-      mockSeedHost: [
+      seedHost: [
         {
           user_id: 1,
           total_store_length: 500,
@@ -99,7 +100,7 @@ class Host extends React.Component {
           total_store_length: 150,
           total_store_width: 350,
           s_address_1: '291 Geary st',
-       ¬   s_city: 'San Francisco',
+          s_city: 'San Francisco',
           s_state: 'ca',
           s_zip: 94102,
           rental_rate: 1000,
@@ -107,23 +108,36 @@ class Host extends React.Component {
       ]
     };
 
+    componentWillMount() {
+      // axios.get('/api/hosts')
+      //   .then((response) => {
+      //     console.log('response ==>', response);
+      //     this.setState({ seedHost: response.data });
+      //   }).catch((error) => {
+      //     console.log(error);
+      //     this.setState({ status: 'error' });
+      //   });
+    }
+
+    renderHostCards = () => {
+      if (this.state.seedHost) {
+        return this.state.seedHost.map(host => (
+          <HostCardNew 
+            {...host}
+          />
+        ))
+      }
+      return null;
+    }
+
+
     render() {
       return (
-      <div>
-        <h1>Hosts Near You! </h1>
-        {
-          this.props.hosts.map(item => (
-            <div className="card">
-              <p>{item.s_address_1}</p>
-              <p>{item.s_city}</p>
-              <p>{item.s_state}</p>
-              <p>Parameter: {item.total_store_length}*{item.total_store_width}</p>
-            </div>
-            ))
-        }
-      </div>
-    );
-  }
+        <div className="card-container">
+          {this.renderHostCards()}
+        </div>
+      );
+    }
 }
 
 export default Host;

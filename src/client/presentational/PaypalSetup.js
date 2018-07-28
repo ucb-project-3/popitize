@@ -1,15 +1,16 @@
 import React from 'react';
+import PaypalButton from './PaypalSetup';
 
-const CLIENT = {
-  sandbox: 'xxxXXX',
-  production: 'xxxXXX',
-};
+
+const CLIENT = 'AVUtgxw6bYEWOnnL2gK6dzVAncuEF0fl-KnTy9jXbVv2PEhdAO-CB_aIGgml_tRIq8a5ukzNLfA8J-sd';
+//   production: 'AVUtgxw6bYEWOnnL2gK6dzVAncuEF0fl-KnTy9jXbVv2PEhdAO-CB_aIGgml_tRIq8a5ukzNLfA8J-sd',
+// };
 
 const ENV = process.env.NODE_ENV === 'development'
-  ? 'production'
+  ? 'development'
   : 'sandbox';
 
-class PaypalButton extends React.Component {
+class PaypalSetup extends React.Component {
   render() {
     const onSuccess = payment =>
       console.log('Successful payment!', payment);
@@ -25,6 +26,7 @@ class PaypalButton extends React.Component {
         <PaypalButton
           client={CLIENT}
           env={ENV}
+          {console.log("Test")}
           commit
           currency="USD"
           total={100}
@@ -36,4 +38,4 @@ class PaypalButton extends React.Component {
     );
   }
 }
-export default PaypalButton;
+export default PaypalSetup;
