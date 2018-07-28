@@ -17,7 +17,7 @@ class HostCard extends React.Component {
               <p>{item.s_address_1}</p>
               <p>{item.s_city}</p>
               <p>{item.s_state}</p>
-              <p>Parameter: {item.total_store_length}*{item.total_store_width}</p>
+              <p>Parameter: {item.total_store_length * item.total_store_width}</p>
             </div>
             ))
         }
