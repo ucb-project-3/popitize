@@ -1,5 +1,5 @@
 {
-  "name": "popetize",
+  "name": "popitize",
   "version": "1.0.0",
   "description": "short term lease of locations for pup-up businesses",
   "main": "src/server/index.js",

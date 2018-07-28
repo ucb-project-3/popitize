@@ -42,10 +42,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    rental_rate: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    }
   });
 
   Popup.associate = (models) => {
