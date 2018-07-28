@@ -2,7 +2,8 @@ const express = require('express');
 const parser = require('body-parser');
 const morgan = require('morgan');
 const db = require('./models');
-const authRoutes = require('./controllers/authenticationRoutes')
+const authRoutes = require('./controllers/authenticationRoutes');
+const dbRoutes = require('./controllers/dbRoutes');
 const userSeed = require('./seeders/seeds');
 
 const PORT = process.env.PORT || 8080;
@@ -15,6 +16,7 @@ app.use(parser.text());
 
 app.use('/', express.static('../../build'));
 app.use(authRoutes);
+app.use(dbRoutes);
 
 if (!(process.env.NODE_ENV === 'test')) {
   db.sequelize.sync({ force: true })

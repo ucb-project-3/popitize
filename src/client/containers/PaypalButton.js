@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import scriptLoader from 'react-async-script-loader';
 
-class PaypalSetup extends React.Component {
+class PaypalButton extends React.Component {
   constructor(props) {
     super(props);
 
@@ -103,4 +103,4 @@ class PaypalSetup extends React.Component {
 }
 
 
-export default scriptLoader('https://www.paypalobjects.com/api/checkout.js')(PaypalSetup);
+export default scriptLoader('https://www.paypalobjects.com/api/checkout.js')(PaypalButton);

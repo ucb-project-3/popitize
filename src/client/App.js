@@ -8,7 +8,7 @@ import Hosts from './containers/Hosts';
 import Dashboard from './containers/Dashboard';
 import Header from './presentational/Header';
 import store from './store';
-import PayPal from './containers/PaypalSetup';
+import PayPal from './containers/PaypalButton';
 
 const theme = createMuiTheme({
   palette: {
