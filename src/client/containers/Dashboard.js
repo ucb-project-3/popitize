@@ -43,12 +43,7 @@ class Dashboard extends React.Component {
         style={{marginTop: '.5rem' }}
       >
         <Hosts />
-        <div>
-          <p>page</p>
-        </div>
-        <div>
-          <p>page</p>
-        </div>
+      
       </Swipe>
     </div>
   )
