@@ -99,24 +99,31 @@ class Host extends React.Component {
           total_store_length: 150,
           total_store_width: 350,
           s_address_1: '291 Geary st',
-          s_city: 'San Francisco',
+       ¬   s_city: 'San Francisco',
           s_state: 'ca',
           s_zip: 94102,
           rental_rate: 1000,
         }
       ]
-
     };
 
     render() {
       return (
-        <div>
-          <HostCard
-                     hosts={this.state.mockSeedHost}
-          />
-        </div>
-      );
-    }
+      <div>
+        <h1>Hosts Near You! </h1>
+        {
+          this.props.hosts.map(item => (
+            <div className="card">
+              <p>{item.s_address_1}</p>
+              <p>{item.s_city}</p>
+              <p>{item.s_state}</p>
+              <p>Parameter: {item.total_store_length}*{item.total_store_width}</p>
+            </div>
+            ))
+        }
+      </div>
+    );
+  }
 }
 
 export default Host;
