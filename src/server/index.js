@@ -5,6 +5,7 @@ const db = require('./models');
 
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./controllers/authenticationRoutes');
+const dbRoutes = require('./controllers/dbRoutes');
 const userSeed = require('./seeders/seeds');
 const path = require('path');
 
@@ -32,6 +33,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 app.use(authRoutes);
+app.use(dbRoutes);
 
 if (!(process.env.NODE_ENV === 'test')) {
   db.sequelize.sync({ force: true })
