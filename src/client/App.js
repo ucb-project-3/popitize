@@ -5,6 +5,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider } from '@material-ui/core';
 import Login from './containers/Login';
 import Hosts from './containers/Hosts';
+import Renters from './containers/Renters';
 import Dashboard from './containers/Dashboard';
 import Header from './presentational/Header';
 import store from './store';
@@ -33,6 +34,7 @@ class App extends React.Component {
                 <Route path="/dashboard" component={Dashboard} />
                 <Route exact path="/" component={Login} />
                 <Route exact path="/hosts" component={Hosts} />
+                <Route exact path="/renters" component={Renters} />
                 {/* <Route exact path="/paypal" component={PayPal} /> */}
               </Switch>
             </Router>

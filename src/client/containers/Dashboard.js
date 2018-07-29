@@ -2,6 +2,7 @@ import React from 'react';
 import Swipe from 'react-swipeable-views';
 import DesktopNav from '../presentational/DesktopNav';
 import Hosts from './Hosts';
+import RenterCard from '../presentational/RenterCard';
 
 
 class Dashboard extends React.Component {
@@ -40,10 +41,11 @@ class Dashboard extends React.Component {
       <Swipe
         index={this.state.index}
         onChangeIndex={index => this.handleChangeIndex(null, index)}
-        style={{marginTop: '.5rem' }}
+        style={{ marginTop: '.5rem' }}
       >
         <Hosts />
-      
+        <RenterCard />
+
       </Swipe>
     </div>
   )

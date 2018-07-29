@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import HostCardNew from '../presentational/HostCardNew';
 
 class Host extends React.Component {
@@ -122,10 +122,10 @@ class Host extends React.Component {
     renderHostCards = () => {
       if (this.state.seedHost) {
         return this.state.seedHost.map(host => (
-          <HostCardNew 
+          <HostCardNew
             {...host}
           />
-        ))
+        ));
       }
       return null;
     }
