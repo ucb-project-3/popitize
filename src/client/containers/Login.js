@@ -50,6 +50,15 @@ class Login extends React.Component {
     });
   }
 
+  switchButton = () => (
+    <Button
+      onClick={this.changeForm}
+      color="secondary"
+    >
+      {this.state.showLogin ? 'Sign Up' : 'Login' }
+    </Button>
+  );
+
   handleSubmit = (event) => {
     event.preventDefault();
     if (this.state.showLogin) {
@@ -86,6 +95,7 @@ class Login extends React.Component {
               email: this.state.email,
               password: this.state.password
               }}
+            switchButton={this.switchButton}
           />
         :
           <SignupForm
@@ -94,12 +104,6 @@ class Login extends React.Component {
             inputs={{ ...this.state.form }}
           />
       }
-      <Button
-        onClick={this.changeForm}
-        color="primary"
-      >
-        {this.state.showLogin ? 'Sign Up' : 'Login' }
-      </Button>
     </div>
   )
 }

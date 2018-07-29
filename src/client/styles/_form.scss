@@ -1,3 +1,39 @@
-#email-input{
-  color: #80CBC4;
+// #email-input{
+//   color: #80CBC4;
+// }
+
+.login-form {
+  margin: 4rem auto;
+  max-width: 630px !important;
+}
+
+.two-row-form {
+  width: 100vw;
+}
+
+.two-row-form > h2 {
+  text-align: center;
+  padding: .5rem;
+}
+.two-row-form-button-row {
+  display: flex;
+  padding: 1rem;
+  flex-flow: row-reverse nowrap;
+}
+
+.two-row-form-inputs {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly
+}
+
+.two-row-form-inputs > div  {
+  min-width: 45%;
+  max-width: 95%;
+  margin: 0 .5rem;
+  @media screen and (max-width: 600px) {
+    width: 95%;
+    
+  }
+  width: max-content;
 }
