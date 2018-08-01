@@ -6,7 +6,16 @@ class RegistrationModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      form: {}
+      form: {
+        total_store_width: '',
+        total_store_height: '',
+        s_address_1: '',
+        s_city: '',
+        s_state: '',
+        s_zip: '',
+        s_address_2: '',
+        rental_rate: '',
+      }
     };
   }
 
@@ -22,7 +31,10 @@ class RegistrationModal extends React.Component {
   }
 
   render = () => (
-    <Dialog open={this.props.open}>
+    <Dialog
+      open={this.props.open}
+      onClose={this.props.onClose}
+    >
       <DialogTitle>
         <Typography variant="headline">
           Registration
@@ -30,6 +42,7 @@ class RegistrationModal extends React.Component {
       </DialogTitle>
       <DialogContent>
         <RegistrationForm
+          inputs={this.state.form}
           handleInput={this.handleInput}
           handleSubmit={this.handleSubmit}
         />
