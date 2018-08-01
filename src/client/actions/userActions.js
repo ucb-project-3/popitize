@@ -9,10 +9,11 @@ export const newUser = user => (dispatch) => {
     dispatch({ type: 'CREATE_USER_ERROR', payload: 'Form Validation Failed' });
     return;
   }
-  axios.post('/api/signup', user)
+  axios.post('/api/auth/new', user)
     .then((res) => {
       if (res.data.id) {
         const {
+          // id,
           first_name,
           last_name,
           age_range,
@@ -38,15 +39,11 @@ export const newUser = user => (dispatch) => {
 
 export const existingUser = user => (dispatch) => {
   dispatch({ type: 'AUTH_USER' });
-  axios.post('/api/signin', user)
+  axios.post('/api/auth/existing', user)
     .then((res) => {
       if (res.data.id) {
-        const {
-          email
-        } = user;
         const payload = {
-          id: res.data.id,
-          email,
+          ...res.data
         };
         dispatch({ type: 'AUTH_USER_SUCCESS', payload });
       } else {
@@ -58,6 +55,4 @@ export const existingUser = user => (dispatch) => {
       dispatch({ type: 'AUTH_USER_ERROR', payload: res });
     });
 };
-
-export const authenticateUser = () => null;
 

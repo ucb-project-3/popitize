@@ -40,10 +40,10 @@ class Dashboard extends React.Component {
       <Swipe
         index={this.state.index}
         onChangeIndex={index => this.handleChangeIndex(null, index)}
-        style={{marginTop: '.5rem' }}
+        style={{ marginTop: '.5rem' }}
       >
         <Hosts />
-      
+
       </Swipe>
     </div>
   )
