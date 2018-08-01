@@ -49,7 +49,10 @@ module.exports.authUser = userResponse => (
       }
     })
       .then((User) => {
-        if (User.password = password) {
+        if (!User) {
+          throw new Error('user not found');
+        }
+        if (User.password === password) {
           const {
             first_name,
             last_name,
@@ -62,8 +65,11 @@ module.exports.authUser = userResponse => (
             email,
           });
         } else {
-          throw new Error('user not found');
+          throw new Error('incorrect password');
         }
+      })
+      .catch((err) => {
+        throw new Error(err);
       });
   })
 );

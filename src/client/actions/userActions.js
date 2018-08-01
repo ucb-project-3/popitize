@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { newUserValidator } from '../validators/userValidators';
+import { newUserValidator, existingUserValidator } from '../validators/userValidators';
 
 export const newUser = user => (dispatch) => {
   dispatch({ type: 'CREATE_USER' });
   const valid = newUserValidator(user);
-  if (valid.err) {
+  if (valid.error) {
     console.log(valid.error);
     dispatch({ type: 'CREATE_USER_ERROR', payload: 'Form Validation Failed' });
     return;
@@ -39,6 +39,12 @@ export const newUser = user => (dispatch) => {
 
 export const existingUser = user => (dispatch) => {
   dispatch({ type: 'AUTH_USER' });
+  const fail = () => dispatch({ type: 'AUTH_USER_ERROR', payload: 'username or password incorrect' });
+  const valid = existingUserValidator(user);
+  if (valid.error) {
+    console.log(valid.error);
+    fail();
+  }
   axios.post('/api/auth/existing', user)
     .then((res) => {
       if (res.data.id) {
@@ -47,12 +53,12 @@ export const existingUser = user => (dispatch) => {
         };
         dispatch({ type: 'AUTH_USER_SUCCESS', payload });
       } else {
-        dispatch({ type: 'AUTH_USER_ERROR', payload: res.data.err });
+        fail();
       }
     })
     .catch((res) => {
       console.log(res);
-      dispatch({ type: 'AUTH_USER_ERROR', payload: res });
+      fail();
     });
 };
 

@@ -12,9 +12,13 @@ router.post('/auth/new', (req, res) => {
 
 router.post('/auth/existing', (req, res) => {
   console.log('hit existing', req.body);
-  authUser(req.body)
-    .then(User => res.json(User))
-    .catch(err => res.json({ err }));
+  try {
+    authUser(req.body)
+      .then(User => res.json(User))
+      .catch(err => res.json({ err }));
+  } catch (err) {
+    res.json({ err });
+  }
 });
 
 module.exports = router;
