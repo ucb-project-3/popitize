@@ -1,0 +1,18 @@
+
+.nav-button {
+  width: fit-content;
+}
+
+#desktop-nav {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-grow: 1;
+  height: fit-content;
+  justify-content: space-between;
+  align-items: flex-end;
+  background-color: $secondary;
+}
+
+#dash-tabs {
+  width: fit-content;
+}
