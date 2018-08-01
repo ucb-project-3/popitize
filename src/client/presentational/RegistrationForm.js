@@ -15,6 +15,7 @@ const RegistrationForm = props => (
     <TextField
       autoFocus
       required
+      label="total score length"
       name="total_store_length"
       placeholder="length of the store"
       type="number"
@@ -26,6 +27,7 @@ const RegistrationForm = props => (
     <TextField
       autoFocus
       required
+      label="total store width"
       name="total_store_width"
       placeholder="width of the store"
       id="total_store_width-input"
@@ -38,6 +40,7 @@ const RegistrationForm = props => (
     <TextField
       autoFocus
       required
+      label="address 1"
       name="s_address_1"
       placeholder="seller address"
       value={props.inputs.s_address_1}
@@ -48,8 +51,9 @@ const RegistrationForm = props => (
     <TextField
       autoFocus
       required
+      label="store city"
       name="s_city"
-      placeholder="seller city"
+      placeholder="store city"
       value={props.inputs.s_city}
       id="s_city-input"
       type="text"
@@ -59,8 +63,9 @@ const RegistrationForm = props => (
     <TextField
       autoFocus
       required
+      label="store state"
       name="s_state"
-      placeholder="seller state"
+      placeholder="store state"
       value={props.inputs.s_state}
       id="s_state-input"
       type="text"
@@ -70,6 +75,7 @@ const RegistrationForm = props => (
     <TextField
       autoFocus
       required
+      label="state zip code"
       name="s_zip"
       placeholder="zipcode"
       value={props.inputs.s_zip}
@@ -81,6 +87,7 @@ const RegistrationForm = props => (
     <TextField
       autoFocus
       required
+      label="store address"
       name="s_address_2"
       placeholder="seller address 2"
       value={props.inputs.address_2}
@@ -93,6 +100,7 @@ const RegistrationForm = props => (
     <TextField
       autoFocus
       required
+      label="rental rate"
       name="rental_rate"
       placeholder="rental_rate"
       value={props.inputs.rental_rate}
