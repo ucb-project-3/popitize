@@ -1,6 +1,6 @@
 const db = require('../models');
 
-// TODO: add offset, filter appropriately
+// TODO: dont pull everything from the db
 module.exports.getHosts = () => (
   new Promise(resolve => (
     db.Host.findAll({
