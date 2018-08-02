@@ -3,6 +3,7 @@ import Swipe from 'react-swipeable-views';
 import DesktopNav from '../presentational/DesktopNav';
 import RegistrationModal from './RegistrationModal';
 import Hosts from './Hosts';
+import Renter from './Renter';
 
 
 class Dashboard extends React.Component {
@@ -57,6 +58,8 @@ class Dashboard extends React.Component {
         style={{ marginTop: '.5rem' }}
       >
         <Hosts />
+
+        <Renter />
 
       </Swipe>
     </div>
