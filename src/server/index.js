@@ -6,6 +6,7 @@ const db = require('./models');
 // const session = require('express-session');
 // const cookieParser = require('cookie-parser');
 const authRoutes = require('./controllers/authenticationRoutes');
+const dataRoutes = require('./controllers/dataRoutes');
 const dbRoutes = require('./controllers/dbRoutes');
 const userSeed = require('./seeders/seeds');
 const path = require('path');
@@ -32,6 +33,7 @@ app.use('/', express.static(path.join(__dirname, '../../dist')));
 // app.use(passport.session()); // persistent login sessions
 
 app.use('/api', authRoutes);
+app.use('/api', dataRoutes);
 app.use(dbRoutes);
 
 if (!(process.env.NODE_ENV === 'test')) {
