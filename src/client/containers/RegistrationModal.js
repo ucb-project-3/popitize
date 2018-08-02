@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogContent, DialogTitle, Typography } from '@material-ui/core';
+import { Dialog, DialogContent, DialogTitle, Typography, Switch } from '@material-ui/core';
 import RegistrationForm from '../presentational/RegistrationForm';
 
 class RegistrationModal extends React.Component {
@@ -15,7 +15,8 @@ class RegistrationModal extends React.Component {
         s_zip: '',
         s_address_2: '',
         rental_rate: '',
-      }
+      },
+      switchOn: false,
     };
   }
 
@@ -24,6 +25,10 @@ class RegistrationModal extends React.Component {
     this.setState({
       [name]: value
     });
+  }
+
+  handleSwitch = (event, value) => {
+    this.setState({ switchOn: value });
   }
 
   handleSubmit = () => {
@@ -36,11 +41,38 @@ class RegistrationModal extends React.Component {
       onClose={this.props.onClose}
     >
       <DialogTitle>
-        <Typography variant="headline">
+        <Typography variant="headline" style={{ textAlign: 'center' }}>
           Registration
         </Typography>
       </DialogTitle>
       <DialogContent>
+        <Typography variant="body1" style={{ textAlign: 'center' }}>
+          Register as a Host or a Renter!
+        </Typography>
+        <div
+          style={{ margin: 'auto', width: 'fit-content' }}
+        >
+          <Switch
+            checked={this.state.switchOn}
+            onChange={this.handleSwitch}
+          />
+
+        </div>
+      </DialogContent>
+      <DialogContent>
+        <DialogTitle>
+          <Typography variant="subheading" style={{ textAlign: 'center' }}>
+            {this.state.switchOn ? 'Renter' : 'Host'}
+          </Typography>
+          <Typography variant="body1" style={{ textAlign: 'center' }}>
+            {
+              this.state.switchOn ?
+                'Provide information about the Popup you would like to open'
+                :
+                'Provide information about the space you have available'
+            }
+          </Typography>
+        </DialogTitle>
         <RegistrationForm
           inputs={this.state.form}
           handleInput={this.handleInput}

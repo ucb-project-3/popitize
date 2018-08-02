@@ -9,7 +9,6 @@ const RegistrationForm = props => (
     <form onSubmit={props.handleSubmit} id="reg-form">
       <div>
         <TextField
-          autoFocus
           required
           name="total_store_length"
           placeholder="length of the store"
@@ -20,7 +19,6 @@ const RegistrationForm = props => (
           onChange={event => props.handleInput(event, 'total_score_length')}
         />
         <TextField
-          autoFocus
           required
           name="total_store_width"
           placeholder="width of the store"
@@ -32,7 +30,6 @@ const RegistrationForm = props => (
         />
 
         <TextField
-          autoFocus
           required
           label="address 1"
           name="s_address_1"
@@ -43,7 +40,6 @@ const RegistrationForm = props => (
           onChange={event => props.handleInput(event, 's_address_1')}
         />
         <TextField
-          autoFocus
           required
           name="s_city"
           placeholder="seller city"
@@ -54,7 +50,6 @@ const RegistrationForm = props => (
         />
 
         <TextField
-          autoFocus
           required
           name="s_state"
           placeholder="seller state"
@@ -65,7 +60,6 @@ const RegistrationForm = props => (
         />
 
         <TextField
-          autoFocus
           required
           name="s_zip"
           placeholder="zipcode"
@@ -76,8 +70,6 @@ const RegistrationForm = props => (
         />
 
         <TextField
-          autoFocus
-          required
           name="s_address_2"
           placeholder="seller address 2"
           value={props.inputs.s_address_2}
@@ -87,7 +79,6 @@ const RegistrationForm = props => (
         />
 
         <TextField
-          autoFocus
           required
           name="rental_rate"
           placeholder="rental_rate"
@@ -98,8 +89,14 @@ const RegistrationForm = props => (
         />
 
       </div>
-      <div>
-        <Button type="submit" onSubmit={props.handleSubmit}>Click me</Button>
+      <div style={{ display: 'flex', flexFlow: 'row-reverse', marginTop: '1rem' }}>
+        <Button
+          type="submit"
+          onSubmit={props.handleSubmit}
+          color="secondary"
+        >
+        Click me
+        </Button>
       </div>
     </form>
   </div>
