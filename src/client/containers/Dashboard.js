@@ -1,6 +1,7 @@
 import React from 'react';
 import Swipe from 'react-swipeable-views';
 import DesktopNav from '../presentational/DesktopNav';
+import RegistrationModal from './RegistrationModal';
 import Hosts from './Hosts';
 import Renter from './Renter';
 
@@ -10,11 +11,12 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       index: 0,
+      regOpen: false,
     };
   }
 
   shouldComponentUpdate = (nextProps, nextState) => (
-    this.state.index !== nextState.index
+    this.state.index !== nextState.index || this.state.regOpen !== nextState.regOpen
   )
 
   handleChangeIndex = (event, index) => {
@@ -25,8 +27,16 @@ class Dashboard extends React.Component {
     window.location = '/';
   }
 
-  OpenRegisterModal = () => {
-    console.log('not implemented');
+  openRegisterModal = () => {
+    this.setState({
+      regOpen: true,
+    });
+  }
+
+  closeRegisterModal = () => {
+    this.setState({
+      regOpen: false,
+    });
   }
 
 
@@ -34,9 +44,13 @@ class Dashboard extends React.Component {
     <div id="dashboard-container">
       <DesktopNav
         swipe={this.handleChangeIndex}
-        openRegister={this.OpenRegisterModal}
         logout={this.logout}
         index={this.state.index}
+        openRegister={this.openRegisterModal}
+      />
+      <RegistrationModal
+        open={this.state.regOpen}
+        onClose={this.closeRegisterModal}
       />
       <Swipe
         index={this.state.index}
@@ -44,6 +58,7 @@ class Dashboard extends React.Component {
         style={{ marginTop: '.5rem' }}
       >
         <Hosts />
+
         <Renter />
 
       </Swipe>
