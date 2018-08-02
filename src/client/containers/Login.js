@@ -1,7 +1,7 @@
 // Login component on /
 // will receive user obj, newUser() and authUser() from store as props
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Button } from '@material-ui/core';
 // import { withStyles } from '@material-ui/core/styles';
 import LoginForm from '../presentational/LoginForm';
@@ -85,14 +85,16 @@ class Login extends React.Component {
   }
 
    render = () => (
-     <div id="login-frame">
-       <LoginSuccess open={this.state.success} login={this.state.showLogin} />
-       <LoginFail
-         open={this.state.failure}
-         dismiss={this.dismissFail}
-         err={this.props.user.status.err}
-       />
-       {
+     <Fragment>
+       <div id="login-background" />
+       <div id="login-frame">
+         <LoginSuccess open={this.state.success} login={this.state.showLogin} />
+         <LoginFail
+           open={this.state.failure}
+           dismiss={this.dismissFail}
+           err={this.props.user.status.err}
+         />
+         {
         this.state.showLogin === true ?
           <LoginForm
             handleInput={this.handleInput}
@@ -109,15 +111,16 @@ class Login extends React.Component {
             inputs={{ ...this.state.form }}
           />
       }
-       <Button
+         <Button
         //  className={this.props.classes.button}
-         onClick={this.changeForm}
-         color="primary"
-         id="button"
-       >
-         {this.state.showLogin ? 'Sign Up' : 'Login' }
-       </Button>
-     </div>
+           onClick={this.changeForm}
+           color="primary"
+           id="button"
+         >
+           {this.state.showLogin ? 'Sign Up' : 'Login' }
+         </Button>
+       </div>
+     </Fragment>
    )
 }
 
