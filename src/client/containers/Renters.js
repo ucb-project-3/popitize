@@ -2,10 +2,9 @@ import React from 'react';
 
 class Renter extends React.Component {
     state = {
-
     };
 
-    componentWillMount() {
+    componentDidMount() {
 
     }
     render() {

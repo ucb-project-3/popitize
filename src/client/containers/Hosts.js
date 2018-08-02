@@ -123,6 +123,7 @@ class Host extends React.Component {
       if (this.state.seedHost) {
         return this.state.seedHost.map(host => (
           <HostCardNew
+            key={host.user_id}
             {...host}
           />
         ));

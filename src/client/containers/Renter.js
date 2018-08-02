@@ -15,15 +15,28 @@ class Renter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
+      // value: '',
+      searchValue: '',
+      searchCategory: ''
       // select should be a string for this use case
     };
   }
 
-    handleChange = (event) => {
-      event.target.blur();
-      this.setState({ value: event.target.value });
-    }
+    //
+
+    handleInputChange = (event) => {
+      // Getting the value and name of the input which triggered the change
+      const { value, name } = event.target;
+
+      // Updating the input's state
+      this.setState({
+        [name]: value
+      });
+    };
+
+    handleFormSubmit = () => {
+      alert(`${this.state.searchValue  } ${  this.state.searchCategory}`);
+    };
     // event.target.value is what we want to set state to
 
     render() {
@@ -36,14 +49,14 @@ class Renter extends React.Component {
             </InputLabel>
             <Select
             // Select was the component you were looking for
-              autoWidth
+              // autoWidth
               inputProps={{
-                name: 'filter-select-one',
+                name: 'searchCategory',
                 id: 'filter-select-one'
                 // needs an id for the label to latch on to
             }}
-              value={this.state.value}
-              onChange={this.handleChange}
+              value={this.state.searchCategory}
+              onChange={this.handleInputChange}
             >
               <MenuItem value="">
                 {/* value is empty before user picks an option */}
@@ -51,12 +64,24 @@ class Renter extends React.Component {
               </MenuItem>
               {/* the text inside of the tags is what gets displayed in the menu
                   ...but the value is the data we get from onChange */}
-              <MenuItem value="item1">item1</MenuItem>
-              <MenuItem value="item2">item2</MenuItem>
-              <MenuItem value="item3">item3</MenuItem>
-              <MenuItem value="item4">item4</MenuItem>
+              <MenuItem value="item1">Address</MenuItem>
+              <MenuItem value="item2">Size</MenuItem>
+              <MenuItem value="item3">Dates</MenuItem>
+              <MenuItem value="item4">Category</MenuItem>
             </Select>
           </FormControl>
+
+          <input
+            name="searchValue"
+            value={this.state.searchValue}
+            onChange={event => this.handleInputChange(event)}
+          />
+          {this.state.searchValue}
+          {this.state.searchCategory}
+
+          <button
+            onClick={this.handleFormSubmit}
+          />
         </div>
       );
     }
