@@ -3,11 +3,27 @@
 
 import React from 'react';
 import { Button } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import LoginForm from '../presentational/LoginForm';
 import SignupForm from '../presentational/SignupForm';
-import { connectLogin } from '../util/connects';
+// import { connectLogin } from '../util/connects';
 import LoginSuccess from '../presentational/LoginSuccessDialog';
 import LoginFail from '../presentational/LoginFailureDialog';
+
+// import '../styles/Login.scss';
+
+// inject some CSS into the DOM.
+const styles = {
+  button: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  },
+};
 
 class Login extends React.Component {
   constructor(props) {
@@ -69,15 +85,15 @@ class Login extends React.Component {
     this.setState({ showLogin: !this.state.showLogin });
   }
 
-  render = () => (
-    <div>
-      <LoginSuccess open={this.state.success} login={this.state.showLogin} />
-      <LoginFail
-        open={this.state.failure}
-        dismiss={this.dismissFail}
-        err={this.props.user.status.err}
-      />
-      {
+   render = () => (
+     <div id="login-frame">
+       <LoginSuccess open={this.state.success} login={this.state.showLogin} />
+       <LoginFail
+         open={this.state.failure}
+         dismiss={this.dismissFail}
+         err={this.props.user.status.err}
+       />
+       {
         this.state.showLogin === true ?
           <LoginForm
             handleInput={this.handleInput}
@@ -94,14 +110,17 @@ class Login extends React.Component {
             inputs={{ ...this.state.form }}
           />
       }
-      <Button
-        onClick={this.changeForm}
-        color="primary"
-      >
-        {this.state.showLogin ? 'Sign Up' : 'Login' }
-      </Button>
-    </div>
-  )
+       <Button
+         className={this.props.classes.button}
+         onClick={this.changeForm}
+         color="primary"
+         id="buttons"
+       >
+         {this.state.showLogin ? 'Sign Up' : 'Login' }
+       </Button>
+     </div>
+   )
 }
 
-export default connectLogin(Login);
+// export default  connectLogin(Login);
+export default withStyles(styles)(Login);
