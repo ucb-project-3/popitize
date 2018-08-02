@@ -1,12 +1,12 @@
 import React from 'react';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 
 const LoginForm = props => (
 
   <div>
-    <h1 id="login-h1"> Log In </h1>
+    <Typography variant="headline" id="login-h1"> Log In </Typography>
     <form onSubmit={props.handleSubmit}>
       <TextField
         autoFocus

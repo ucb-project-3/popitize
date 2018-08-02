@@ -1,18 +1,18 @@
 import React from 'react';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 
 const SignupForm = props => (
   <div>
-    <h1 id="signup-h1"> Sign up Form </h1>
+    <Typography variant="headline" id="signup-h1"> Sign up Form </Typography>
     <form onSubmit={props.handleSubmit} className="2-col-form-body">
       <TextField
         required
         name="email"
         label="Email"
         value={props.inputs.email}
-        placeholder="ben@trackgraphic.com"
+        placeholder="dave@dave.dave"
         id="email-input"
         type="text"
         onChange={event => props.handleInput(event, 'email')}
@@ -21,7 +21,7 @@ const SignupForm = props => (
         required
         name="password"
         label="Password"
-        placeholder="secret secret"
+        placeholder="secret"
         value={props.inputs.password}
         id="password-input"
         type="password"
