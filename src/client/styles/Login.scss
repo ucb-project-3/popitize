@@ -1,7 +1,9 @@
-body {
-    width: 0 auto;
-    height: 100%;
+#login-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
     background-image: url("https://images.unsplash.com/photo-1489834237676-23889bab8c15?ixlib=rb-0.3.5&s=6618aef7730e9abf6cd4124788bfa01c&auto=format&fit=crop&w=2094&q=80");
+    z-index: -111;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
