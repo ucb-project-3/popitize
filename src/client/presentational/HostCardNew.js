@@ -9,10 +9,10 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const styles = {
-  card: {
-    maxWidth: 345,
-    margin: 'auto',
-  },
+  // card: {
+  //   maxWidth: 345,
+  //   margin: 'auto',
+  // },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
