@@ -4,6 +4,7 @@ import DesktopNav from '../presentational/DesktopNav';
 import RegistrationModal from './RegistrationModal';
 import Hosts from './Hosts';
 import Renter from './Renter';
+import Profile from './Profile';
 
 
 class Dashboard extends React.Component {
@@ -60,6 +61,8 @@ class Dashboard extends React.Component {
         <Hosts />
 
         <Renter />
+
+        <Profile />
 
       </Swipe>
     </div>
