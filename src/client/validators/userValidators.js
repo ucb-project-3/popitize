@@ -37,13 +37,16 @@ const newUserSchema = {
     .maxLength(48),
   city: Legalize
     .string()
-    .alphanum()
+    // .alphanum()
     .maxLength(48),
   state: Legalize
     .string()
     .alphanum()
     .maxLength(2)
     .minLength(2),
+  address_2: Legalize
+    .string()
+    .optional(),
   zip: Legalize
     .number()
     .integer()
@@ -57,7 +60,32 @@ export const newUserValidator = obj => (
     newUserSchema,
     {
       presence: 'required',
+      strict: false,
     }
   )
 );
-export const existingUserValidator = () => null;
+
+const existingUserSchema = {
+  email: Legalize
+    .string()
+    .minLength(6)
+    .maxLength(120)
+    .match(/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/),
+  password: Legalize
+    .string()
+    .minLength(6)
+    .maxLength(50)
+    .match(/(@|#|$|%|!)/)
+    .match(/[a-z]/)
+    .match(/[A-Z]/),
+};
+export const existingUserValidator = obj => (
+  Legalize.validate(
+    obj,
+    existingUserSchema,
+    {
+      presence: 'required',
+      strict: false,
+    }
+  )
+);
