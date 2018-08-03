@@ -18,7 +18,6 @@ const DesktopNav = ({
         textColor="primary"
         textPr
       >
-        <Tab disableRipple label="Spaces" />
         <Tab disableRipple label="Popups" />
         <Tab disableRipple label="Profile" />
       </Tabs>
