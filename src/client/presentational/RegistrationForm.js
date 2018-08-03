@@ -93,9 +93,17 @@ const RegistrationForm = props => (
         <Button
           type="submit"
           onSubmit={props.handleSubmit}
-          color="secondary"
+          color="secondary" 
+          style={{right: '0.5em',
+          margin: '0.5em',
+          marginBottom: '0em',
+          background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+          fontWeight: 'bolder',
+          height: '48',
+          padding: '0 30px',
+          color: 'white',}}
         >
-        Click me
+        Register
         </Button>
       </div>
     </form>

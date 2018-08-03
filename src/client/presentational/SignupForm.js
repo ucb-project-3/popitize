@@ -126,7 +126,7 @@ const SignupForm = props => (
         type="text"
         onChange={event => props.handleInput(event, 'address_2')}
       />
-      <Button type="submit">Submit Form</Button>
+      <Button type="submit">Login</Button>
     </form>
   </div>
 );

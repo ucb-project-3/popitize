@@ -1,8 +1,21 @@
 import React from 'react';
 import { TextField, Button, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
+const styles = {
+  button: {
+    right: '0.5em',
+    margin: '0.5em',
+    marginBottom: '0em',
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    fontWeight: 'bolder',
+    height: '48',
+    padding: '0 30px',
+    color: 'white',
 
+  },
+};
 const LoginForm = props => (
 
   <div>
@@ -30,7 +43,9 @@ const LoginForm = props => (
         type="password"
         onChange={event => props.handleInput(event, 'password')}
       />
-      <Button type="submit">Click to Log In</Button>
+      <Button className={props.classes.button} type="submit">  {props.children} Login</Button>
+
+      <Button className={props.classes.button} type="submit"> {props.children} Register</Button>
     </form>
   </div>
 );
@@ -38,6 +53,8 @@ const LoginForm = props => (
 LoginForm.propTypes = {
   handleInput: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  children: PropTypes.node, 
+  classes: PropTypes.object.isRequired,
 };
 
-export default LoginForm;
+export default withStyles(styles)(LoginForm);

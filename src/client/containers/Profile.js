@@ -13,9 +13,7 @@ import ProfilePic from '../imgs/cat.jpg';
 
 // ** @material-ui/core is where the component library lives
 // do not use simply 'material-ui' as that is not the official material ui lib
-const style = {
-  color: 'white'
-};
+
 
 class Profile extends React.Component {
   constructor(props) {
@@ -43,28 +41,28 @@ class Profile extends React.Component {
          <List>
                   <ListItem>
                   
-                    <ListItemText style={style}
+                    <ListItemText 
                       primary="Verified Info"
                     />
                   </ListItem>
 
                    <ListItem>
                   
-                  <ListItemText style={style}
+                  <ListItemText 
                     primary="Email Address"
                   />
                 </ListItem>
 
                  <ListItem>
                   
-                  <ListItemText style={style}
+                  <ListItemText 
                     primary="Phone Number"
                   />
                 </ListItem>
 
                  <ListItem>
                   
-                  <ListItemText style={style}
+                  <ListItemText 
                     primary="Rating"
                   />
                 </ListItem>
