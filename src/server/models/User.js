@@ -1,4 +1,4 @@
-const { modelUtils, modelStatics } = require('../utils')
+const { modelUtils, modelStatics } = require('../utils');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       age_range: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       credit_rating: {
         type: DataTypes.INTEGER,

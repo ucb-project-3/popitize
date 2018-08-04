@@ -19,7 +19,7 @@ const styles = {
   },
 };
 
-const SimpleMediaCard = (props) =>  {
+const SimpleMediaCard = (props) => {
   const { classes } = props;
   return (
     <div className="card">
@@ -44,9 +44,6 @@ const SimpleMediaCard = (props) =>  {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
           <Button size="small" color="primary">
             Learn More
           </Button>

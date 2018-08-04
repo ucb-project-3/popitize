@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+// import Slide from '@material-ui/core/Slide';
 import HostCardNew from '../presentational/HostCardNew';
 
 class Host extends React.Component {
@@ -107,6 +108,7 @@ class Host extends React.Component {
         // }
       ]
     };
+    
 
     componentDidMount() {
       this.getHosts();
@@ -121,6 +123,14 @@ class Host extends React.Component {
           });
         });
     }
+
+    // handleClickOpen = () => {
+    //   this.setState({ open: true });
+    // };
+  
+    // handleClose = () => {
+    //   this.setState({ open: false });
+    // };
 
     renderHostCards = () => {
       if (this.state.hosts) {
