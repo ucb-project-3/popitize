@@ -40,6 +40,22 @@
     margin-top: 10px;
 }
 
+.formbutton{
+  color: white;
+  background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+  font-weight: bolder;
+  height: 48;
+  padding: 0 30px;
+  margin-top: 10px;
+  right: 0.5em;
+  margin: 0.5em;
+  margin-bottom: 0em;
+
+}
+
+.formbutton span{
+  color: white;
+}
 #login-h1,#signup-h1 {
     background-color: #FFA07A;
     font-size: 20px;
@@ -57,6 +73,15 @@
     box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
     border: 1px solid #F5B7B1;
 }
+
+
+form button{
+  right: 0.5em;
+  margin: 0.5em;
+  margin-bottom: 0em;
+
+}
+
 
 // #signup-h1{
 //     background-color: #FFA07A;
