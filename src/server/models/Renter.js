@@ -11,15 +11,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     
-    desired_begin_date: {
-    type: DataTypes.DATE,
-    allowNull: false
-    },
+  //   desired_begin_date: {
+  //   type: DataTypes.DATE,
+  //   allowNull: false
+  //   },
     
-    desired_end_date: {
-    type: DataTypes.DATE,
-    allowNull: false
-   },
+  //   desired_end_date: {
+  //   type: DataTypes.DATE,
+  //   allowNull: false
+  //  },
 
     // isActive: {
     //   type: DataTypes.BOOLEAN,
