@@ -4,16 +4,6 @@ import { connectProfile } from '../util/connects';
 import ProfilePic from '../imgs/cat.jpg';
 
 
-// ctrl+click for docs/demos:
-// https://material-ui.com/demos/selects/
-// https://material-ui.com/api/menu-item/#menuitem
-// https://material-ui.com/api/select/#select
-// https://material-ui.com/api/form-control/#formcontrol
-
-// ** @material-ui/core is where the component library lives
-// do not use simply 'material-ui' as that is not the official material ui lib
-
-
 class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -26,11 +16,12 @@ class Profile extends React.Component {
   }
 
   render() {
+    const { user } = this.props;
     return (
       <Paper
         style={{
           display: 'flex',
-          flexFlow: 'row nowrap',
+          flexFlow: window.innerWidth > 600 ? 'row nowrap' : 'column nowrap',
           justifyContent: 'space-between',
           padding: '1rem',
           background: 'whitesmoke'
@@ -57,12 +48,42 @@ class Profile extends React.Component {
             display: 'flex',
             width: 'auto',
             flexFlow: 'column nowrap',
-            justifyContent: 'space-evenly',
+            justifyContent: 'center',
             alignItems: 'center',
+            paddingBottom: '6rem',
           }}
         >
-          <Typography variant="headline" component="h1">
-            {this.props.user.first_name || 'Not logged in'}
+          <Typography
+            variant="headline"
+            component="h1"
+            style={{
+              fontSize: '4rem'
+            }}
+          >
+            {
+              user.first_name && user.last_name ?
+                `${user.first_name} ${user.last_name}`
+              :
+                'user not found'
+            }
+          </Typography>
+          <Typography
+            variant="subheading"
+            component="h2"
+            style={{
+              fontSize: '1.5rem'
+            }}
+          >
+            {user.email || 'noemail@email.com'}
+          </Typography>
+          <Typography
+            variant="subheading"
+            component="h2"
+            style={{
+              fontSize: '1rem'
+            }}
+          >
+            No Renter or Host info :/
           </Typography>
         </div>
       </Paper>

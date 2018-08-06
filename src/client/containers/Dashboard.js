@@ -40,6 +40,12 @@ class Dashboard extends React.Component {
     });
   }
 
+  conditionalDisplay = (index) => {
+    if (this.state.index === index) {
+      return { display: 'initial' };
+    }
+    return { display: 'none' };
+  }
 
   render = () => (
     <div id="dashboard-container">
@@ -57,12 +63,15 @@ class Dashboard extends React.Component {
         index={this.state.index}
         onChangeIndex={index => this.handleChangeIndex(null, index)}
       >
-        <Hosts />
-
-        <Renter />
-
-        <Profile />
-
+        <div style={this.conditionalDisplay(0)}>
+          <Hosts />
+        </div>
+        <div style={this.conditionalDisplay(1)}>
+          <Renter />
+        </div>
+        <div style={this.conditionalDisplay(2)}>
+          <Profile />
+        </div>
       </Swipe>
     </div>
   )
