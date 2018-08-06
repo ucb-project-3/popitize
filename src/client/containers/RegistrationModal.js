@@ -1,6 +1,8 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogTitle, Typography, Switch } from '@material-ui/core';
+import { connectRegistration } from '../util/connects';
 import RegistrationForm from '../presentational/RegistrationForm';
+// import { connect } from 'http2';
 
 class RegistrationModal extends React.Component {
   constructor(props) {
@@ -32,7 +34,8 @@ class RegistrationModal extends React.Component {
   }
 
   handleSubmit = () => {
-    console.log(this.state.form);
+    const { newHost, newRenter } = this.props;
+    (this.state.switchOn ? newHost : newRenter)(this.state.form);
   }
 
   render = () => (
@@ -83,4 +86,4 @@ class RegistrationModal extends React.Component {
   )
 }
 
-export default RegistrationModal;
+export default connectRegistration(RegistrationModal);

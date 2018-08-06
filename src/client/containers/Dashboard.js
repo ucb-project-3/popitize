@@ -1,10 +1,10 @@
 import React from 'react';
 import Swipe from 'react-swipeable-views';
+import { Fade } from '@material-ui/core';
 import DesktopNav from '../presentational/DesktopNav';
 import RegistrationModal from './RegistrationModal';
 import Hosts from './Hosts';
 import Renter from './Renter';
-import { Fade } from '@material-ui/core';
 import Profile from './Profile';
 
 
