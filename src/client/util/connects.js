@@ -11,3 +11,8 @@ const LoginDispatch = dispatch => ({
 export const connectLogin = Login => (
   connect(LoginProps, LoginDispatch)(Login)
 );
+
+export const connectProfile = Profile => (
+  connect(LoginProps, null)(Profile)
+);
+

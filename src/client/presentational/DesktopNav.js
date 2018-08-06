@@ -16,8 +16,8 @@ const DesktopNav = ({
         onChange={swipe}
         indicatorColor="primary"
         textColor="primary"
-        // textpr
       >
+        <Tab disableRipple label="Spaces" />
         <Tab disableRipple label="Popups" />
         <Tab disableRipple label="Profile" />
       </Tabs>

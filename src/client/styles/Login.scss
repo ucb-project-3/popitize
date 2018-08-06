@@ -31,26 +31,25 @@
     margin-bottom: 15px;
 }
 
-#button {
-    color: white;
-    background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
-    font-weight: bolder;
-    height: 48;
-    padding: 0 30px;
-    margin-top: 10px;
-}
+// #button {
+//     color: white;
+//     background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+//     font-weight: bolder;
+//     height: 48;
+//     padding: 0 30px;
+//     margin-top: 10px;
+// }
 
-.formbutton{
-  color: white;
+.form-button{
+  color: white !important;
   background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
-  font-weight: bolder;
-  height: 48;
-  padding: 0 30px;
-  margin-top: 10px;
-  right: 0.5em;
-  margin: 0.5em;
-  margin-bottom: 0em;
-
+//   font-weight: bolder;
+//   height: 48;
+//   padding: 0 30px;
+//   margin-top: 10px;
+//   right: 0.5em;
+//   margin: 0.5em;
+//   margin-bottom: 0em;
 }
 
 .formbutton span{
