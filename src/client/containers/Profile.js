@@ -1,7 +1,6 @@
 import React from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import { CardMedia, Card, Paper, Typography } from '@material-ui/core';
+import { connectProfile } from '../util/connects';
 import ProfilePic from '../imgs/cat.jpg';
 
 
@@ -19,64 +18,59 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // value: '',
-    
-      // select should be a string for this use case
     };
   }
 
-    //
+  componentDidMount = () => {
+    console.log(this.props);
+  }
 
-   
-    
-    
-
-    render() {
-      return (
-        <div>
-       <img src={ProfilePic}/>
-        
-         
-
-         <List>
-                  <ListItem>
-                  
-                    <ListItemText 
-                      primary="Verified Info"
-                    />
-                  </ListItem>
-
-                   <ListItem>
-                  
-                  <ListItemText 
-                    primary="Email Address"
-                  />
-                </ListItem>
-
-                 <ListItem>
-                  
-                  <ListItemText 
-                    primary="Phone Number"
-                  />
-                </ListItem>
-
-                 <ListItem>
-                  
-                  <ListItemText 
-                    primary="Rating"
-                  />
-                </ListItem>
-
-
-                
-              </List>
-         
+  render() {
+    return (
+      <Paper
+        style={{
+          display: 'flex',
+          flexFlow: 'row nowrap',
+          justifyContent: 'space-between',
+          padding: '1rem',
+          background: 'whitesmoke'
+        }}
+      >
+        <Card
+          style={{
+            width: 'fit-content',
+            height: 'fit-content',
+            borderRadius: '100%',
+            margin: '1rem',
+          }}
+        >
+          <CardMedia
+            image={ProfilePic}
+            style={{
+            padding: '10rem',
+          }}
+          />
+        </Card>
+        <div
+          style={{
+            flexGrow: 99,
+            display: 'flex',
+            width: 'auto',
+            flexFlow: 'column nowrap',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+          }}
+        >
+          <Typography variant="headline" component="h1">
+            {this.props.user.first_name || 'Not logged in'}
+          </Typography>
         </div>
-      );
-    }
+      </Paper>
+    );
+  }
 }
 
 // this all wasnt working because the wrong components were being imported
 // and the wrong props were being pased to the select
 
-export default Profile;
+export default connectProfile(Profile);
