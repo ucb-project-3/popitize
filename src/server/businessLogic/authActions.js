@@ -51,28 +51,48 @@ module.exports.createUser = userResponse => (
 module.exports.authUser = userResponse => (
   new Promise((resolve) => {
     const { email } = userResponse;
-    const password = hash(userResponse.password);
+    const uPass = hash(userResponse.password);
     db.User.findOne({
       where: {
         email
-      }
+      },
+      attributes: [
+        'first_name',
+        'password',
+        'last_name',
+        'age_range',
+        'credit_rating',
+        'id',
+      ]
     })
-      .then((User) => {
+      .then((fullUser) => {
+        const { password, ...User } = fullUser;
         if (!User) {
           throw new Error('user not found');
         }
-        if (User.password === password) {
-          const {
-            first_name,
-            last_name,
-            id,
-          } = User;
-          resolve({
-            first_name,
-            last_name,
-            id,
-            email,
-          });
+        if (password === uPass) {
+          db.Token.destroy({
+            where: {
+              user_id: User.id,
+            }
+          })
+            .then(() => {
+              generateToken()
+                .then((t) => {
+                  db.Token.create({
+                    t,
+                    exp: new Date().getTime(),
+                    user_id: User.id,
+                  })
+                    .then((newT) => {
+                      resolve({
+                        ...User,
+                        token: newT.t,
+                        exp: newT.exp,
+                      });
+                    });
+                });
+            });
         } else {
           throw new Error('incorrect password');
         }
@@ -82,3 +102,34 @@ module.exports.authUser = userResponse => (
       });
   })
 );
+
+module.exports.verifyToken = token => (
+  new Promise(resolve => (
+    db.Token.findOne({
+      where: { t: token },
+      attributes: [
+        'exp',
+      ],
+      include: {
+        model: ['User'],
+        as: 'user',
+        attributes: [
+          'first_name',
+          'last_name',
+          'email',
+          'id',
+          'age_range',
+        ],
+      },
+    })
+      .then((data) => {
+        const { exp, user } = data;
+        const now = new Date().getTime();
+        if (exp < now) {
+          resolve(null);
+        }
+        resolve(user);
+      })
+  ))
+);
+
