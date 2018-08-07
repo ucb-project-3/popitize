@@ -17,7 +17,7 @@ export const newUser = user => (dispatch) => {
           exp,
           ...retUser
         } = res.data;
-
+        localStorage.clear();
         localStorage.setItem('token', token);
         localStorage.setItem('exp', exp);
 
@@ -50,8 +50,8 @@ export const existingUser = user => (dispatch) => {
           token,
           exp,
           ...retUser
-        } = user;
-
+        } = res.data;
+        localStorage.clear();
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('exp', res.data);
 

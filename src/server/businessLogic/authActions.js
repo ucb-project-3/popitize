@@ -7,9 +7,8 @@ module.exports.createUser = userResponse => (
       ...userResponse,
       password: hash(userResponse.password),
     });
-    user.validate().then((err) => {
-      console.log('er', err);
-    });
+    // user.validate().then((err) => {
+    // });
     user.save()
       .then((User) => {
         const {
@@ -18,11 +17,10 @@ module.exports.createUser = userResponse => (
           last_name,
           email,
           age_range,
-        } = User.dataValues;
+        } = User;
         generateToken()
           .then((t) => {
             const date = new Date();
-            console.log(date.getTime());
             db.Token.create({
               t,
               exp: date.getTime() + (60 * 60 * 24 * 5 * 1000),
@@ -42,7 +40,6 @@ module.exports.createUser = userResponse => (
           });
       })
       .catch((dbErr) => {
-        console.log('catching', dbErr);
         throw new Error(dbErr);
       });
   })
@@ -59,6 +56,7 @@ module.exports.authUser = userResponse => (
       attributes: [
         'first_name',
         'password',
+        'email',
         'last_name',
         'age_range',
         'credit_rating',
@@ -66,7 +64,7 @@ module.exports.authUser = userResponse => (
       ]
     })
       .then((fullUser) => {
-        const { password, ...User } = fullUser;
+        const { password, ...User } = fullUser.dataValues;
         if (!User) {
           throw new Error('user not found');
         }
@@ -84,7 +82,8 @@ module.exports.authUser = userResponse => (
                     exp: new Date().getTime(),
                     user_id: User.id,
                   })
-                    .then((newT) => {
+                    .then((NewT) => {
+                      const newT = NewT.dataValues;
                       resolve({
                         ...User,
                         token: newT.t,
