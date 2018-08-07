@@ -28,6 +28,7 @@ const styles = theme => ({
   appBar: {
     // changed this
     position: 'static',
+    height: 'fit-content',
     // marginLeft: drawerWidth,
     // [theme.breakpoints.up('md')]: {
     //   width: `calc(100% - ${drawerWidth}px)`,
@@ -87,7 +88,14 @@ class ResponsiveDrawer extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <img  src={mainLogo} alt="fireSpot"/>
+            <img
+              style={{
+              maxHeight: '8rem',
+              maxWidth: '8rem',
+            }}
+              src={mainLogo}
+              alt="fireSpot"
+            />
           </Toolbar>
         </AppBar>
         {/* This here should be in a separate component */}

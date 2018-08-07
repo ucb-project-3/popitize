@@ -1,0 +1,102 @@
+#login-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("https://images.unsplash.com/photo-1489834237676-23889bab8c15?ixlib=rb-0.3.5&s=6618aef7730e9abf6cd4124788bfa01c&auto=format&fit=crop&w=2094&q=80");
+    z-index: -111;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#login-frame {
+    height: 100%;
+    max-width: 500px;
+    padding: 10px 20px;
+    background: #f4f7f8;
+    margin: 20px auto 20px;
+    padding: 20px;
+    background: #f4f7f8;
+    border-radius: 8px;
+    // font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#login-frame label {
+    display: block;
+    font-size: 20px;
+    // font-family: 'Ubuntu Condensed', sans-serif;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+// #button {
+//     color: white;
+//     background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+//     font-weight: bolder;
+//     height: 48;
+//     padding: 0 30px;
+//     margin-top: 10px;
+// }
+
+.form-button{
+  color: white !important;
+  background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+//   font-weight: bolder;
+//   height: 48;
+//   padding: 0 30px;
+//   margin-top: 10px;
+//   right: 0.5em;
+//   margin: 0.5em;
+//   margin-bottom: 0em;
+}
+
+.formbutton span{
+  color: white;
+}
+#login-h1,#signup-h1 {
+    background-color: #FFA07A;
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 20px 30px 15px 30px;
+    margin: -30px -20px 30px -20px;
+    border-radius: 0px 0px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+    // font-family: normal 30px 'Bitter', serif;
+    -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+    -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+    box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+    border: 1px solid #F5B7B1;
+}
+
+
+form button{
+  right: 0.5em;
+  margin: 0.5em;
+  margin-bottom: 0em;
+
+}
+
+
+// #signup-h1{
+//     background-color: #FFA07A;
+//     font-size: 20px;
+//     font-weight: bolder;
+//     padding: 20px 30px 15px 30px;
+//     margin: -30px -20px 30px -20px;
+//     border-radius: 0px 0px 0 0;
+//     -webkit-border-radius: 10px 10px 0 0;
+//     -moz-border-radius: 10px 10px 0 0;
+//     color: #fff;
+//     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+//     font-family: normal 30px 'Bitter', serif;
+//     -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+//     -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+//     box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+//     border: 1px solid #F5B7B1;
+// }
+
