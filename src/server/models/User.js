@@ -1,4 +1,5 @@
-const { modelUtils, modelStatics } = require('../utils')
+// const { modelUtils, modelStatics } = require('../utils');
+const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
@@ -56,28 +57,19 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     {
-      classMethods: {
-        validPassword(password, passwd, done, user) {
-          bcrypt.compare(password, passwd, (err, isMatch) => {
-            if (err) console.log(err);
-            if (isMatch) {
-              return done(null, user);
-            }
-            return done(null, false);
-          });
+      hooks: {
+        beforeCreate: (user) => {
+          const salt = bcrypt.genSaltSync();
+          user.password = bcrypt.hashSync(user.password, salt);
+        }
+      },
+      instanceMethods: {
+        validPassword(password) {
+          return bcrypt.compareSync(password, this.password);
         }
       }
     }
   );
-
-  // User.hook('beforeCreate', (user, fn) => {
-  //   const salt = bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => salt);
-  //   bcrypt.hash(user.password, salt, null, (err, hash) => {
-  //     if (err) return next(err);
-  //     user.password = hash;
-  //     return fn(null, user);
-  //   });
-  // });
 
   User.associate = (models) => {
     // Associating User with Host
