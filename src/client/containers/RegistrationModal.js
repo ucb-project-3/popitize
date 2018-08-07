@@ -35,7 +35,10 @@ class RegistrationModal extends React.Component {
 
   handleSubmit = () => {
     const { newHost, newRenter } = this.props;
-    (this.state.switchOn ? newHost : newRenter)(this.state.form);
+    (this.state.switchOn ? newHost : newRenter)({
+      ...this.state.form,
+      id: this.props.user.id,
+    });
   }
 
   render = () => (

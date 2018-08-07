@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { newUser, existingUser } from '../actions/userActions';
+import { newHostProfile } from '../actions/registrationActions';
 
 const LoginProps = ({ user }) => ({ user });
 
@@ -9,7 +10,7 @@ const LoginDispatch = dispatch => ({
 });
 
 const RegistrationDispatch = dispatch => ({
-  newHost: () => console.log('dispatch new host'),
+  newHost: host => dispatch(newHostProfile(host)),
   newRenter: () => console.log('dispatch new renter'),
 });
 
