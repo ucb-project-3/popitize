@@ -20,6 +20,17 @@ class Dashboard extends React.Component {
     this.profileRef = React.createRef();
   }
 
+  componentWillMount = () => {
+    if (!localStorage.token) {
+      window.location = '/';
+    } else {
+      const now = new Date();
+      if (localStorage.exp < now.getTime()) {
+        window.location = '/';
+      }
+    }
+  }
+
   shouldComponentUpdate = (nextProps, nextState) => (
     this.state.index !== nextState.index || this.state.regOpen !== nextState.regOpen
   )

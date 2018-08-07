@@ -33,8 +33,8 @@ class App extends React.Component {
               <Switch>
                 <Route path="/dashboard" component={Dashboard} />
                 <Route exact path="/" component={Login} />
-                <Route exact path="/hosts" component={Hosts} />
-                <Route exact path="/renters" component={Renters} />
+                {/* <Route exact path="/hosts" component={Hosts} />
+                <Route exact path="/renters" component={Renters} /> */}
                 {/* <Route exact path="/paypal" component={PayPal} /> */}
               </Switch>
             </Router>
