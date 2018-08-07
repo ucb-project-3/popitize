@@ -1,13 +1,11 @@
 const db = require('../models');
-const { createHash } = require('crypto');
+const { hash, generateToken } = require('../utils/crypt');
 
 module.exports.createUser = userResponse => (
   new Promise((resolve) => {
     const user = db.User.build({
       ...userResponse,
-      password: createHash('md5')
-        .update(userResponse.password)
-        .digest('hex'),
+      password: hash(userResponse.password),
     });
     user.validate().then((err) => {
       console.log('er', err);
@@ -21,14 +19,27 @@ module.exports.createUser = userResponse => (
           email,
           age_range,
         } = User.dataValues;
-
-        resolve({
-          id,
-          first_name,
-          last_name,
-          email,
-          age_range,
-        });
+        generateToken()
+          .then((t) => {
+            const date = new Date();
+            console.log(date.getTime());
+            db.Token.create({
+              t,
+              exp: date.getTime() + (60 * 60 * 24 * 5 * 1000),
+              user_id: id,
+            })
+              .then((token) => {
+                resolve({
+                  id,
+                  first_name,
+                  last_name,
+                  email,
+                  age_range,
+                  token: token.t,
+                  exp: token.exp,
+                });
+              });
+          });
       })
       .catch((dbErr) => {
         console.log('catching', dbErr);
@@ -40,9 +51,7 @@ module.exports.createUser = userResponse => (
 module.exports.authUser = userResponse => (
   new Promise((resolve) => {
     const { email } = userResponse;
-    const password = createHash('md5')
-      .update(userResponse.password)
-      .digest('hex');
+    const password = hash(userResponse.password);
     db.User.findOne({
       where: {
         email

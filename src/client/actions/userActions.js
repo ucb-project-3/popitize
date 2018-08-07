@@ -12,6 +12,7 @@ export const newUser = user => (dispatch) => {
   axios.post('/api/auth/new', user)
     .then((res) => {
       if (res.data.id) {
+        localStorage.setItem('token', res.data.token);
         const {
           // id,
           first_name,
