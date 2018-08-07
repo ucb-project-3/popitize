@@ -25,7 +25,7 @@ const HostCard = (props) => {
   const modalData = props;
   // delete modalData.openModal;
   return (
-    <div className="card">
+    <div id="media">
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
@@ -59,7 +59,8 @@ const HostCard = (props) => {
           <Button
             size="small"
             color="primary"
-            onClick={() => props.openModal(modalData)}
+            onClick={() => props.openModal(props.id)}
+            // {console.log(modalData)}.
           >
             Learn More
           </Button>

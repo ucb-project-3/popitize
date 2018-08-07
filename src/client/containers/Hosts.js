@@ -25,10 +25,21 @@ class Host extends React.Component {
         });
     }
 
-    openModal = (data) => {
+    openModal = (id) => {
+      console.log(this.state.hosts);
+      const target = this.state.hosts.filter(host => host.id === id);
+      console.log(target);
+      const property = (
+        <div>
+          <p>{target[0].s_address_1}</p>
+          <p>{target[0].s_city}</p>
+          <p>{target[0].s_state}</p>
+          <p>{target[0].popup_category}</p>
+        </div>
+      );
       this.setState({
         showModal: true,
-        modalContent: data,
+        modalContent: property,
       });
     }
 
@@ -68,9 +79,9 @@ class Host extends React.Component {
                 <Close />
               </IconButton>
             </AppBar>
-            {JSON.stringify(this.state.modalContent)}
+            {this.state.modalContent}
           </Dialog>
-          <div className="card-container">
+          <div id="card-container">
             {this.renderHostCards()}
           </div>
         </Fragment>
