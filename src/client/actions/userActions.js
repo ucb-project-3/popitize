@@ -66,3 +66,16 @@ export const existingUser = user => (dispatch) => {
     });
 };
 
+export const verifyToken = t => (dispatch) => {
+  axios.post('/api/auth/token', { token: t })
+    .then((res) => {
+      if (res.data.id) {
+        dispatch({ type: 'TOKEN_VERIFIED', payload: res.data });
+        if (window.location.hash !== '#/dashboard') {
+          window.location.hash = '#/dashboard';
+        }
+      }
+    })
+    .catch(() => console.log('token auth failed'));
+};
+

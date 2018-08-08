@@ -3,9 +3,8 @@ import { Provider } from 'react-redux';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider } from '@material-ui/core';
+import { verifyToken } from './actions/userActions';
 import Login from './containers/Login';
-import Hosts from './containers/Hosts';
-import Renters from './containers/Renters';
 import Dashboard from './containers/Dashboard';
 import Header from './presentational/Header';
 import store from './store';
@@ -19,6 +18,16 @@ const theme = createMuiTheme({
 });
 
 class App extends React.Component {
+  componentWillMount = () => {
+    console.log(store);
+    if (localStorage.token && localStorage.exp) {
+      if (localStorage.exp < new Date().getTime()) {
+        console.log('invalid token');
+      }
+      store.dispatch(verifyToken(localStorage.token));
+    }
+  }
+
   componentDidCatch() {
     console.log('App failed to mount');
   }

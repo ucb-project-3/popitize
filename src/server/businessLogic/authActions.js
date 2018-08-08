@@ -108,26 +108,45 @@ module.exports.verifyToken = token => (
       where: { t: token },
       attributes: [
         'exp',
+        'user_id'
       ],
-      include: {
-        model: ['User'],
-        as: 'user',
-        attributes: [
-          'first_name',
-          'last_name',
-          'email',
-          'id',
-          'age_range',
-        ],
-      },
+      // include: [{
+      //   model: 'Users',
+      //   // as: 'user',
+      //   // attributes: [
+      //   //   'first_name',
+      //   //   'last_name',
+      //   //   'email',
+      //   //   'id',
+      //   //   'age_range',
+      //   // ],
+      // }],
+      // include: ['User'],
     })
       .then((data) => {
-        const { exp, user } = data;
+        if (!data) {
+          resolve(null);
+          return;
+        }
+        console.log('res', data);
+        const { exp, user_id } = data;
         const now = new Date().getTime();
         if (exp < now) {
           resolve(null);
         }
-        resolve(user);
+        db.User.findOne({
+          where: {
+            id: user_id,
+          },
+          attributes: [
+            'first_name',
+            'last_name',
+            'email',
+            'id',
+            'age_range',
+          ]
+        })
+          .then(user => resolve(user));
       })
   ))
 );

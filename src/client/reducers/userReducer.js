@@ -70,8 +70,17 @@ export default (
         err: action.payload,
       }
     };
+  } else if (action.type === 'TOKEN_VERIFIED') {
+    return {
+      ...state,
+      ...action.payload,
+      status: {
+        fetching: false,
+        fetched: true,
+        err: null,
+      }
+    };
   }
 
   return { ...state };
 };
-
