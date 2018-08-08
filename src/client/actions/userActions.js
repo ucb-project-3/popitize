@@ -73,6 +73,8 @@ export const verifyToken = t => (dispatch) => {
         dispatch({ type: 'TOKEN_VERIFIED', payload: res.data });
         if (window.location.hash !== '#/dashboard') {
           window.location.hash = '#/dashboard';
+        } else {
+          window.location = '/';
         }
       }
     })
