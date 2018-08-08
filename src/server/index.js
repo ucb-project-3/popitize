@@ -8,6 +8,7 @@ const db = require('./models');
 const authRoutes = require('./controllers/authenticationRoutes');
 const dataRoutes = require('./controllers/dataRoutes');
 const dbRoutes = require('./controllers/dbRoutes');
+const registrationRoutes = require('./controllers/registrationRoutes');
 const userSeed = require('./seeders/seeds');
 const path = require('path');
 
@@ -34,6 +35,7 @@ app.use('/', express.static(path.join(__dirname, '../../dist')));
 
 app.use('/api', authRoutes);
 app.use('/api', dataRoutes);
+app.use('/api', registrationRoutes);
 app.use(dbRoutes);
 
 if (!(process.env.NODE_ENV === 'test')) {

@@ -96,21 +96,22 @@ class Login extends React.Component {
          />
          {/* {
         this.state.showLogin === true ? */}
-          <LoginForm
-            handleInput={this.handleInput}
-            handleSubmit={this.handleSubmit}
-            inputs={{
-              email: this.state.email,
-              password: this.state.password
-              }}
-          />
-            
-          {/* // <SignupForm
+         <LoginForm
+           showLogin={this.state.showLogin}
+           changeForm={this.changeForm}
+           handleInput={this.handleInput}
+           handleSubmit={this.handleSubmit}
+           inputs={
+             this.state.form
+           }
+         />
+
+         {/* // <SignupForm
           //   handleInput={this.handleInput}
           //   handleSubmit={this.handleSubmit}
           //   inputs={{ ...this.state.form }}
           // />
-      
+
          /* <Button
         //  className={this.props.classes.button}
            onClick={this.changeForm}
