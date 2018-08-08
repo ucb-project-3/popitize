@@ -18,10 +18,9 @@ const RegistrationForm = props => (
           name="total_store_length"
           label="Store length"
           type="number"
-          step=".01"
-          value={props.inputs.total_score_length}
+          value={props.inputs.total_store_length}
           id="total_score_length-input"
-          onChange={event => props.handleInput(event, 'total_score_length')}
+          onChange={event => props.handleInput(event, 'total_store_length')}
         />
         <TextField
           required
@@ -29,7 +28,6 @@ const RegistrationForm = props => (
           label="Store Width"
           id="total_store_width-input"
           type="number"
-          step=".01"
           value={props.inputs.total_store_width}
           onChange={event => props.handleInput(event, 'total_store_width')}
         />
@@ -85,7 +83,7 @@ const RegistrationForm = props => (
         <TextField
           required
           name="rental_rate"
-          label="rental_rate"
+          label="rental rate"
           value={props.inputs.rental_rate}
           id="rental_rate-input"
           type="number"

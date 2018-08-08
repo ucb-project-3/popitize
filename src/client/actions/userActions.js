@@ -74,10 +74,18 @@ export const verifyToken = t => (dispatch) => {
         if (window.location.hash !== '#/dashboard') {
           window.location.hash = '#/dashboard';
         } else {
+          if (window.location === '/' || window.location.hash === '#/') {
+            return;
+          }
           window.location = '/';
         }
       }
     })
-    .catch(() => console.log('token auth failed'));
+    .catch(() => {
+      if (window.location === '/' || window.location.hash === '#/') {
+        return;
+      }
+      console.log('token auth failed');
+      window.location = '/';
+    });
 };
-

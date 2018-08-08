@@ -23,9 +23,13 @@ class RegistrationModal extends React.Component {
   }
 
   handleInput = (event, name) => {
+    console.log('called', name);
     const { value } = event.target;
     this.setState({
-      [name]: value
+      form: {
+        ...this.state.form,
+        [name]: value
+      }
     });
   }
 
