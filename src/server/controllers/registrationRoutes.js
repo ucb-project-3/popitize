@@ -14,6 +14,19 @@ router.post('/reg/host', (req, res) => {
       res.json(err);
     });
 });
+router.post('/reg/renter', (req, res) => {
+  db.Renter.create(req.body)
+    .then((host) => {
+      console.log(host);
+      const { user_id, ...others } = host.dataValues;
+      res.json(others);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(401);
+      res.json(err);
+    });
+});
 // router.post('/reg/gethost', (req, res) => {
 //   if ('token' in req.body) {
 //     db.Token.findOne({ where: { t: req.body.token } })

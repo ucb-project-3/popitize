@@ -15,7 +15,7 @@ export const newHostProfile = host => (dispatch) => {
 export const newRenterProfile = id => (dispatch) => {
   console.log('new renter');
   dispatch({ type: 'CREATE_RENTER' });
-  axios.post('/api/reg/host', { id })
+  axios.post('/api/reg/renter', { user_id: id })
     .then((res) => {
       console.log(res.data);
       dispatch({ type: 'CREATE_RENTER_SUCCESS', payload: res.data });
