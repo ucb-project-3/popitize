@@ -49,6 +49,7 @@ export const existingUser = user => (dispatch) => {
         const {
           token,
           exp,
+          host,
           ...retUser
         } = res.data;
         localStorage.clear();
@@ -56,6 +57,7 @@ export const existingUser = user => (dispatch) => {
         localStorage.setItem('exp', res.data);
 
         dispatch({ type: 'AUTH_USER_SUCCESS', payload: retUser });
+        dispatch({ type: 'CREATE_HOST_SUCCESS', payload: host });
       } else {
         fail();
       }
@@ -73,9 +75,19 @@ export const verifyToken = t => (dispatch) => {
         dispatch({ type: 'TOKEN_VERIFIED', payload: res.data });
         if (window.location.hash !== '#/dashboard') {
           window.location.hash = '#/dashboard';
+        } else {
+          if (window.location === '/' || window.location.hash === '#/') {
+            return;
+          }
+          window.location = '/';
         }
       }
     })
-    .catch(() => console.log('token auth failed'));
+    .catch(() => {
+      if (window.location === '/' || window.location.hash === '#/') {
+        return;
+      }
+      console.log('token auth failed');
+      window.location = '/';
+    });
 };
-

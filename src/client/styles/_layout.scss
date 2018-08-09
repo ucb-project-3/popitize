@@ -4,3 +4,21 @@
   width: 100vw;
 }
 
+#host-grid {
+  display: grid;
+  grid-template-columns: 1/4fr 1/4fr 1/4fr 1/4fr;
+  grid-column-gap: 2rem;
+}
+
+#host-non-grid {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: 100%
+}
+
+.host-grid-rows {
+  display: flex;
+  flex-flow: column nowrap;
+}
+

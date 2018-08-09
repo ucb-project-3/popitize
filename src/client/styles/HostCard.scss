@@ -25,14 +25,14 @@
 .card-container {
     display: flex;
     flex-flow: column nowrap;
-    max-width: 960px;
+    padding: 0 1rem;
     margin: auto;
     align-items: center;
 }
 
 .card {
     margin: 1rem auto;
-    max-width: 960px;
+    // max-width: 960px;
     width: 100% !important;
 }
 
