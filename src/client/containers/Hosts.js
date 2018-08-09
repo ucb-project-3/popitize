@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Dialog, Slide, AppBar, IconButton } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import HostCard from '../presentational/HostCard';
+import HostGrid from '../presentational/HostGrid';
 
 class Host extends React.Component {
     state = {
@@ -41,13 +42,33 @@ class Host extends React.Component {
 
     renderHostCards = () => {
       if (this.state.hosts) {
-        return this.state.hosts.map(host => (
-          <HostCard
-            openModal={this.openModal}
-            key={host.id}
-            {...host}
+        const cards = this.state.hosts
+          .filter(({ accepting_renters }) => !accepting_renters)
+          .map(host => (
+            <HostCard
+              openModal={this.openModal}
+              key={host.id}
+              {...host}
+            />
+          ));
+        const gridItems = [[], [], [], [], []];
+        let j = 0;
+        cards.forEach((item) => {
+          gridItems[j].push(item);
+          if (j > 2) {
+            j = 0;
+          } else {
+            j += 1;
+          }
+        });
+        return (
+          <HostGrid
+            row1={gridItems[0]}
+            row2={gridItems[1]}
+            row3={gridItems[2]}
+            row4={gridItems[3]}
           />
-        ));
+        );
       }
       return null;
     }

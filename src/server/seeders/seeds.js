@@ -1,4 +1,5 @@
 const db = require('../models');
+const { hash } = require('../utils/crypt');
 
 const seedUsers = () => new Promise(resolve => (
   db.User.bulkCreate([
@@ -122,6 +123,18 @@ const seedUsers = () => new Promise(resolve => (
       state: 'ca',
       zip: '94107',
     },
+    {
+      email: 'test@test.com',
+      first_name: 'Berk',
+      last_name: 'Enstocks',
+      password: hash('Pass1!'),
+      age_range: 1,
+      credit_rating: 700,
+      address_1: '160 Main St.',
+      city: 'San Francisco',
+      state: 'ca',
+      zip: '94107',
+    },
   ], {})
     .then(entries => resolve(entries.map(User => User.dataValues.id)))
     .catch((err) => { throw new Error(err); })
@@ -138,6 +151,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_state: 'ca',
       s_zip: 94107,
       rental_rate: 3000,
+      image_url: '/api/img/bagelshop.jpg'
     },
     {
       user_id: userIds.pop(),
@@ -148,6 +162,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_state: 'ca',
       s_zip: 94103,
       rental_rate: 5000,
+      image_url: '/api/img/Car.jpg'
     },
     {
       user_id: userIds.pop(),
@@ -158,6 +173,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_state: 'ca',
       s_zip: 94609,
       rental_rate: 7500,
+      image_url: '/api/img/commercial.jpeg'
     },
     {
       user_id: userIds.pop(),
@@ -168,6 +184,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_state: 'ca',
       s_zip: 94102,
       rental_rate: 10000,
+      image_url: '/api/img/formal.jpeg'
     },
     {
       user_id: userIds.pop(),
@@ -178,6 +195,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_state: 'ca',
       s_zip: 94103,
       rental_rate: 1200,
+      image_url: '/api/img/Fashion.jpg'
     },
     {
       user_id: userIds.pop(),
@@ -188,6 +206,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_state: 'ca',
       s_zip: 94107,
       rental_rate: 2500,
+      image_url: '/api/img/garage.jpg'
     },
     {
       user_id: userIds.pop(),
@@ -198,6 +217,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_state: 'ca',
       s_zip: 94102,
       rental_rate: 5600,
+      image_url: '/api/img/homeliving.jpg'
     },
     {
       user_id: userIds.pop(),
@@ -208,6 +228,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_state: 'ca',
       s_zip: 94123,
       rental_rate: 6400,
+      image_url: '/api/img/Modern.jpeg'
     },
     {
       user_id: userIds.pop(),
@@ -218,6 +239,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_state: 'ca',
       s_zip: 94123,
       rental_rate: 9000,
+      image_url: '/api/img/sportsshop.jpeg'
     },
     {
       user_id: userIds.pop(),
@@ -228,6 +250,7 @@ const seedHosts = userIds => new Promise(resolve => (
       s_state: 'ca',
       s_zip: 94102,
       rental_rate: 1000,
+      image_url: '/api/img/workshop.jpeg'
     },
   ], {})
     .then(() => resolve())

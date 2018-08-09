@@ -26,14 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(128),
       allowNull: false
     },
-    age_range: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    credit_rating: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     address_1: {
       type: DataTypes.STRING(128),
       allowNull: false
@@ -47,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     zip: {
-      type: DataTypes.DECIMAL(8, 0),
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     address_2: {

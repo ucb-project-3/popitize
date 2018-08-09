@@ -10,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       allowNull: false
     },
-    
+    // type: {
+    //   type: DataTypes.STRING(3, 40),
+    //   allowNull: false
+    // }
   //   desired_begin_date: {
   //   type: DataTypes.DATE,
   //   allowNull: false

@@ -14,6 +14,7 @@ module.exports.getHosts = () => (
         's_zip',
         's_address_2',
         'rental_rate',
+        'image_url'
       ]
     })
       .then(Hosts => resolve(Hosts))

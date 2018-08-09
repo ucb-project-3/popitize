@@ -19,7 +19,6 @@ const theme = createMuiTheme({
 
 class App extends React.Component {
   componentWillMount = () => {
-    console.log(store);
     if (localStorage.token && localStorage.exp) {
       if (localStorage.exp < new Date().getTime()) {
         console.log('invalid token');

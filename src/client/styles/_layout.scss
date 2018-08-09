@@ -4,3 +4,25 @@
   width: 100vw;
 }
 
+#host-grid {
+  margin: auto;
+  width: 95%;
+  display: grid;
+  grid-template-columns: 22% 22% 22%  22%;
+  grid-column-gap: 2rem;
+}
+
+#host-non-grid {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: 100%
+}
+
+.host-grid-rows {
+  width: 100%;
+  // max-width: 5rem !important;
+  display: flex;
+  flex-flow: column nowrap;
+}
+

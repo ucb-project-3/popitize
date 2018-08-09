@@ -4,6 +4,7 @@ import { newUserValidator, existingUserValidator } from '../validators/userValid
 export const newUser = user => (dispatch) => {
   dispatch({ type: 'CREATE_USER' });
   const valid = newUserValidator(user);
+  console.log(user);
 
   if (valid.error) {
     dispatch({ type: 'CREATE_USER_ERROR', payload: 'Form Validation Failed' });
@@ -49,6 +50,8 @@ export const existingUser = user => (dispatch) => {
         const {
           token,
           exp,
+          host,
+          renter,
           ...retUser
         } = res.data;
         localStorage.clear();
@@ -56,6 +59,8 @@ export const existingUser = user => (dispatch) => {
         localStorage.setItem('exp', res.data);
 
         dispatch({ type: 'AUTH_USER_SUCCESS', payload: retUser });
+        dispatch({ type: 'CREATE_HOST_SUCCESS', payload: host });
+        dispatch({ type: 'CREATE_RENTER_SUCCESS', payload: renter });
       } else {
         fail();
       }
@@ -67,15 +72,34 @@ export const existingUser = user => (dispatch) => {
 };
 
 export const verifyToken = t => (dispatch) => {
+  console.log('verifying token');
   axios.post('/api/auth/token', { token: t })
     .then((res) => {
+      console.log(res.data);
       if (res.data.id) {
-        dispatch({ type: 'TOKEN_VERIFIED', payload: res.data });
+        const {
+          host,
+          renter,
+          ...retUser
+        } = res.data;
+        dispatch({ type: 'TOKEN_VERIFIED', payload: retUser });
+        dispatch({ type: 'CREATE_HOST_SUCCESS', payload: host });
+        dispatch({ type: 'CREATE_RENTER_SUCCESS', payload: renter });
         if (window.location.hash !== '#/dashboard') {
           window.location.hash = '#/dashboard';
+        } else {
+          if (window.location === '/' || window.location.hash === '#/') {
+            return;
+          }
+          window.location = '/';
         }
       }
     })
-    .catch(() => console.log('token auth failed'));
+    .catch(() => {
+      if (window.location === '/' || window.location.hash === '#/') {
+        return;
+      }
+      console.log('token auth failed');
+      window.location = '/';
+    });
 };
-

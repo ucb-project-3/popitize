@@ -94,26 +94,6 @@ const LoginForm = props => (
             />
             <TextField
               required
-              name="age_range"
-              label="Age range"
-              placeholder="Age Range"
-              value={props.inputs.age_range}
-              id="age_range-input"
-              type="number"
-              onChange={event => props.handleInput(event, 'age_range')}
-            />
-            <TextField
-              required
-              name="credit_rating"
-              label="Credit rating"
-              placeholder="Credit Rating"
-              value={props.inputs.credit_rating}
-              id="credit_rating-input"
-              type="number"
-              onChange={event => props.handleInput(event, 'credit_rating')}
-            />
-            <TextField
-              required
               name="address_1"
               label="Address 1"
               placeholder="Address 1"
