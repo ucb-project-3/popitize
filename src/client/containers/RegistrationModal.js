@@ -57,7 +57,7 @@ class RegistrationModal extends React.Component {
       user_id: this.props.user.id,
     };
     if (this.state.switchOn) {
-      this.props.newRenter(data);
+      this.props.newRenter(this.props.user.id);
     } else {
       this.props.newHost(data);
     }
