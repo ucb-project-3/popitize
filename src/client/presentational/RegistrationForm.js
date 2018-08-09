@@ -97,6 +97,33 @@ const RegistrationForm = props => (
                   type="number"
                   onChange={event => props.handleInput(event, 'rental_rate')}
                 />
+                <div
+                  style={{
+                    // display: `${((!props.switchOn && !props.accounts.host)
+                    //  || (props.switchOn && !props.accounts.renter))
+                    //  ? 'flex' : 'none'}`,
+                    flexFlow: 'row-reverse',
+                    marginTop: '1rem'
+                  }}
+                >
+                  <Button
+                    type="submit"
+                    onSubmit={props.handleSubmit}
+                    color="secondary"
+                    style={{
+                    right: '0.5em',
+                    margin: '0.5em',
+                    marginBottom: '0em',
+                    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+                    fontWeight: 'bolder',
+                    height: '48',
+                    padding: '0 30px',
+                    color: 'white',
+                  }}
+                  >
+                    Register
+                  </Button>
+                </div>
               </Fragment>
             )
             :
@@ -105,33 +132,6 @@ const RegistrationForm = props => (
               </Fragment>
         }
 
-      </div>
-      <div
-        style={{
-          display: `${((!props.switchOn && !props.accounts.host)
-           || (props.switchOn && !props.accounts.renter))
-           ? 'flex' : 'none'}`,
-          flexFlow: 'row-reverse',
-          marginTop: '1rem'
-        }}
-      >
-        <Button
-          type="submit"
-          onSubmit={props.handleSubmit}
-          color="secondary"
-          style={{
-            right: '0.5em',
-            margin: '0.5em',
-            marginBottom: '0em',
-            background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-            fontWeight: 'bolder',
-            height: '48',
-            padding: '0 30px',
-            color: 'white',
-          }}
-        >
-        Register
-        </Button>
       </div>
     </form>
   </div>
