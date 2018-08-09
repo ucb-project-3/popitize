@@ -27,11 +27,30 @@ router.post('/reg/renter', (req, res) => {
       res.json(err);
     });
 });
+
+router.post('/reg/gethostname', (req, res) => {
+  if (req.body.id) {
+    db.Host.findOne({
+      where: { id: req.body.id },
+      attributes: ['user_id']
+    }).then((Host) => {
+      console.log('host', Host);
+      db.User.findOne({
+        where: { id: Host.dataValues.user_id },
+        attributes: ['first_name', 'last_name'],
+      })
+        .then((User) => {
+          res.json({ ...User.dataValues });
+        });
+    })
+      .catch(err => console.log(err));
+  }
+});
 // router.post('/reg/gethost', (req, res) => {
 //   if ('token' in req.body) {
 //     db.Token.findOne({ where: { t: req.body.token } })
 //       .then((t) => {
-//         db.User.findOne({ 
+//         db.User.findOne({
 //           where: { id: t.user_id },
 //           include: [{
 //             model: 'Host'

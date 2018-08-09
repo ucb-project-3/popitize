@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
-import { Dialog, Slide, AppBar, IconButton } from '@material-ui/core';
-import { Close } from '@material-ui/icons';
 import HostCard from '../presentational/HostCard';
 import HostGrid from '../presentational/HostGrid';
+import HostModal from '../presentational/HostModal';
 
 class Host extends React.Component {
     state = {
@@ -27,6 +26,7 @@ class Host extends React.Component {
     }
 
     openModal = (data) => {
+      console.log(data);
       this.setState({
         showModal: true,
         modalContent: data,
@@ -76,21 +76,11 @@ class Host extends React.Component {
     render() {
       return (
         <Fragment>
-          <Dialog
-            fullScreen
-            open={this.state.showModal}
+          <HostModal
+            showModal={this.state.showModal}
+            closeModal={this.closeModal}
             content={this.state.modalContent}
-            // TransitionComponent={props => <Slide direction="up" {...props} />}
-          >
-            <AppBar position="static">
-              <IconButton
-                onClick={this.closeModal}
-              >
-                <Close />
-              </IconButton>
-            </AppBar>
-            {JSON.stringify(this.state.modalContent)}
-          </Dialog>
+          />
           <div className="card-container">
             {this.renderHostCards()}
           </div>

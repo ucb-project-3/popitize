@@ -87,12 +87,16 @@ export const verifyToken = t => (dispatch) => {
         dispatch({ type: 'CREATE_RENTER_SUCCESS', payload: renter });
         if (window.location.hash !== '#/dashboard') {
           window.location.hash = '#/dashboard';
-        } else {
-          if (window.location === '/' || window.location.hash === '#/') {
-            return;
-          }
-          window.location = '/';
         }
+      // } else if (window.location.hash !== '#/') {
+      //   window.location = '/';
+      // }
+      } else {
+        if (window.location === '/' || window.location.hash === '#/') {
+          return;
+        }
+        console.log('token auth failed');
+        window.location = '/';
       }
     })
     .catch(() => {

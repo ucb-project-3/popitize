@@ -39,6 +39,10 @@ class Dashboard extends React.Component {
     if (this.state.index !== index) this.setState({ index });
   }
 
+  funcPasser = (func) => {
+    this.reloadImages = func;
+  }
+
   logout = () => {
     localStorage.clear();
     window.location = '/';
@@ -69,6 +73,7 @@ class Dashboard extends React.Component {
         openRegister={this.openRegisterModal}
       />
       <RegistrationModal
+        reload={this.reload}
         open={this.state.regOpen}
         onClose={this.closeRegisterModal}
       />
