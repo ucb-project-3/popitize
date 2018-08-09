@@ -42,13 +42,15 @@ class Host extends React.Component {
 
     renderHostCards = () => {
       if (this.state.hosts) {
-        const cards = this.state.hosts.map(host => (
-          <HostCard
-            openModal={this.openModal}
-            key={host.id}
-            {...host}
-          />
-        ));
+        const cards = this.state.hosts
+          .filter(({ accepting_renters }) => !accepting_renters)
+          .map(host => (
+            <HostCard
+              openModal={this.openModal}
+              key={host.id}
+              {...host}
+            />
+          ));
         const gridItems = [[], [], [], [], []];
         let j = 0;
         cards.forEach((item) => {

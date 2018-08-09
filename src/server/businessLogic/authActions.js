@@ -16,7 +16,6 @@ module.exports.createUser = userResponse => (
           first_name,
           last_name,
           email,
-          age_range,
         } = User;
         generateToken()
           .then((t) => {
@@ -32,7 +31,6 @@ module.exports.createUser = userResponse => (
                   first_name,
                   last_name,
                   email,
-                  age_range,
                   token: token.t,
                   exp: token.exp,
                 });
@@ -53,40 +51,47 @@ module.exports.authUser = userResponse => (
       where: {
         email
       },
-      include: [{
-        association: 'Hosts',
-        attributes: [
-          'id',
-          'total_store_length',
-          'total_store_width',
-          's_address_1',
-          's_city',
-          's_state',
-          's_zip',
-          's_address_2',
-          'rental_rate',
-        ]
-      }],
+      include: [
+        {
+          association: 'Renters',
+          attributes: [
+            'id',
+          ]
+        },
+        {
+          association: 'Hosts',
+          attributes: [
+            'id',
+            'total_store_length',
+            'total_store_width',
+            's_address_1',
+            's_city',
+            's_state',
+            's_zip',
+            's_address_2',
+            'rental_rate',
+          ]
+        },
+      ],
       attributes: [
         'first_name',
         'password',
         'email',
         'last_name',
-        'age_range',
-        'credit_rating',
         'id',
       ]
     })
       .then((fullUser) => {
         console.log('user obj', fullUser);
         const { password, ...User } = fullUser.dataValues;
-        if (!User) {
+        const { Hosts, Renters, ...retUser } = User;
+        if (!retUser) {
           throw new Error('user not found');
         }
         if (password === uPass) {
           db.Token.destroy({
             where: {
-              user_id: User.id,
+              user_id: retUser.id,
             }
           })
             .then(() => {
@@ -95,12 +100,16 @@ module.exports.authUser = userResponse => (
                   db.Token.create({
                     t,
                     exp: new Date().getTime(),
-                    user_id: User.id,
+                    user_id: retUser.id,
                   })
                     .then((NewT) => {
                       const newT = NewT.dataValues;
+                      const host = Hosts ? Hosts[0] : null;
+                      const renter = Renters ? Renters[0] : null;
                       resolve({
-                        ...User,
+                        ...retUser,
+                        host,
+                        renter,
                         token: newT.t,
                         exp: newT.exp,
                       });
@@ -144,7 +153,8 @@ module.exports.verifyToken = token => (
           return;
         }
         console.log('res', data);
-        const { exp, user_id } = data;
+        const { exp, user_id } = data.dataValues;
+        console.log('token');
         const now = new Date().getTime();
         if (exp < now) {
           resolve(null);
@@ -153,29 +163,46 @@ module.exports.verifyToken = token => (
           where: {
             id: user_id,
           },
-          include: [{
-            association: 'Hosts',
-            attributes: [
-              'id',
-              'total_store_length',
-              'total_store_width',
-              's_address_1',
-              's_city',
-              's_state',
-              's_zip',
-              's_address_2',
-              'rental_rate',
-            ]
-          }],
+          include: [
+            {
+              association: 'Hosts',
+              attributes: [
+                'id',
+                'total_store_length',
+                'total_store_width',
+                's_address_1',
+                's_city',
+                's_state',
+                's_zip',
+                's_address_2',
+                'rental_rate',
+              ]
+            },
+            {
+              association: 'Renters',
+              attributes: [
+                'id',
+              ]
+            },
+
+          ],
           attributes: [
             'first_name',
             'last_name',
             'email',
             'id',
-            'age_range',
           ]
         })
-          .then(user => resolve(user));
+          .then((user) => {
+            const { Hosts, Renters, ...retUser } = user.dataValues;
+            const host = Hosts ? Hosts[0] : null;
+            const renter = Renters ? Renters[0] : null;
+            resolve({
+              ...retUser,
+              renter,
+              host
+            });
+          });
       })
   ))
 );

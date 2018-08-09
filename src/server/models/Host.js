@@ -42,6 +42,13 @@ module.exports = (sequelize, DataTypes) => {
     rental_rate: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    image_url: {
+      type: DataTypes.STRING(40)
+    },
+    accepting_renters: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
     }
   });
 

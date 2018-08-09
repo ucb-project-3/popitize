@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 // import Host from '../containers/Hosts';
+const placeHolder = 'https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjlyfu3td_cAhVRJDQIHc5SDaYQjRx6BAgBEAU&url=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F49846842%2Fi-need-two-elements-to-switch-places-via-css&psig=AOvVaw0-ofNr64KZ-xgB_AFSTrF3&ust=1533885104624824'
 
 const styles = {
   // card: {
@@ -23,13 +24,19 @@ const styles = {
 const HostCard = (props) => {
   const { classes } = props;
   const modalData = props;
+  const origin = (
+    window.location.origin === 'http://localhost:3000' ?
+      'http://localhost:8080'
+      :
+      window.location.origin
+  );
   // delete modalData.openModal;
   return (
     <div className="card">
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
-          image="https://www.thesprucepets.com/thmb/n25vOYrJ9ntY6WJXEMsOEuccxo4=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-605382633-58b1dc925f9b5860463bf7d0.jpg"
+          image={props.image_url ? (origin + props.image_url) : placeHolder}
           title={props.popup_description}
         />
         <CardContent>
@@ -52,7 +59,7 @@ const HostCard = (props) => {
             {props.s_state}
           </Typography>
           <Typography component="p">
-            Popup Size: {props.total_store_width * props.total_store_length} sqft
+            {props.total_store_width * props.total_store_length} sqft
           </Typography>
         </CardContent>
         <CardActions>

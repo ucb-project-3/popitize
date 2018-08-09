@@ -122,9 +122,9 @@ class RegistrationModal extends React.Component {
                   <Typography variant="body1" style={{ textAlign: 'center' }}>
                     {
               this.state.switchOn ?
-                'Provide information about the Popup you would like to open'
+                'No extra information required!'
                 :
-                'Provide information about the space you have available'
+                'Provide information about the space you have available.'
             }
                   </Typography>
                 </DialogTitle>

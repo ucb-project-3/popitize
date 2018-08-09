@@ -33,8 +33,6 @@ class Login extends React.Component {
         password: '',
         first_name: '',
         last_name: '',
-        age_range: '',
-        credit_rating: '',
         address_1: '',
         city: '',
         state: '',

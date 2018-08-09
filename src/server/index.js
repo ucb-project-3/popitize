@@ -23,6 +23,7 @@ app.use(parser.json());
 app.use(parser.text());
 
 app.use('/', express.static(path.join(__dirname, '../../dist')));
+app.use('/api/img', express.static(`${__dirname}/imgs`));
 // For Passport
 
 // app.use(session({

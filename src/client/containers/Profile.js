@@ -19,6 +19,7 @@ class Profile extends React.Component {
     const { user } = this.props;
     return (
       <Paper
+        elevation={5}
         style={{
           display: 'flex',
           flexFlow: window.innerWidth > 600 ? 'row nowrap' : 'column nowrap',
