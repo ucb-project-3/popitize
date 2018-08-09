@@ -13,7 +13,7 @@ export default (
       pic_url: null,
     },
     renter: {
-
+      id: null,
     },
     status: {
       fetching: false,
@@ -45,6 +45,36 @@ export default (
       }
     };
   } else if (action.type === 'CREATE_HOST_ERROR') {
+    return {
+      ...state,
+      status: {
+        fetching: false,
+        fetched: false,
+        err: action.payload
+      }
+    };
+  } else if (action.type === 'CREATE_RENTER') {
+    return {
+      ...state,
+      status: {
+        fetching: true,
+        fetched: false,
+        err: null
+      }
+    };
+  } else if (action.type === 'CREATE_RENTER_SUCCESS') {
+    return {
+      ...state,
+      renter: {
+        ...action.payload,
+      },
+      status: {
+        fetching: false,
+        fetched: true,
+        err: null
+      }
+    };
+  } else if (action.type === 'CREATE_RENTER_ERROR') {
     return {
       ...state,
       status: {

@@ -25,12 +25,6 @@ const newUserSchema = {
     .match(/(@|#|$|%|!)/)
     .match(/[a-z]/)
     .match(/[A-Z]/),
-  age_range: Legalize
-    .number()
-    .integer(),
-  credit_rating: Legalize
-    .number()
-    .integer(),
   address_1: Legalize
     .string()
     .minLength(1)

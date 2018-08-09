@@ -5,8 +5,10 @@
 }
 
 #host-grid {
+  margin: auto;
+  width: 95%;
   display: grid;
-  grid-template-columns: 1/4fr 1/4fr 1/4fr 1/4fr;
+  grid-template-columns: 22% 22% 22%  22%;
   grid-column-gap: 2rem;
 }
 
@@ -18,6 +20,8 @@
 }
 
 .host-grid-rows {
+  width: 100%;
+  // max-width: 5rem !important;
   display: flex;
   flex-flow: column nowrap;
 }
