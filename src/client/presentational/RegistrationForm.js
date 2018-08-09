@@ -16,7 +16,7 @@ const RegistrationForm = props => (
         <TextField
           required
           name="total_store_length"
-          label="Store length"
+          label="Store Length"
           type="number"
           step=".01"
           value={props.inputs.total_score_length}
@@ -37,7 +37,7 @@ const RegistrationForm = props => (
         <TextField
           required
           name="s_address_1"
-          label="address"
+          label="Address"
           value={props.inputs.s_address_1}
           id="s_address_1-input"
           type="text"
@@ -46,7 +46,7 @@ const RegistrationForm = props => (
         <TextField
           required
           name="s_city"
-          label="city"
+          label="City"
           value={props.inputs.s_city}
           id="s_city-input"
           type="text"
@@ -56,7 +56,7 @@ const RegistrationForm = props => (
         <TextField
           required
           name="s_state"
-          label="state"
+          label="State"
           value={props.inputs.s_state}
           id="s_state-input"
           type="text"
@@ -66,7 +66,7 @@ const RegistrationForm = props => (
         <TextField
           required
           name="s_zip"
-          label="zipcode"
+          label="Zip Code"
           value={props.inputs.s_zip}
           id="s_zip-input"
           type="number"
@@ -75,7 +75,7 @@ const RegistrationForm = props => (
 
         <TextField
           name="s_address_2"
-          label="address 2"
+          label="Address 2"
           value={props.inputs.s_address_2}
           id="address_2-input"
           type="text"
@@ -85,7 +85,7 @@ const RegistrationForm = props => (
         <TextField
           required
           name="rental_rate"
-          label="rental_rate"
+          label="Rental Rate"
           value={props.inputs.rental_rate}
           id="rental_rate-input"
           type="number"
