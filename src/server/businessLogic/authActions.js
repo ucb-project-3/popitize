@@ -53,6 +53,20 @@ module.exports.authUser = userResponse => (
       where: {
         email
       },
+      include: [{
+        association: 'Hosts',
+        attributes: [
+          'id',
+          'total_store_length',
+          'total_store_width',
+          's_address_1',
+          's_city',
+          's_state',
+          's_zip',
+          's_address_2',
+          'rental_rate',
+        ]
+      }],
       attributes: [
         'first_name',
         'password',
@@ -64,6 +78,7 @@ module.exports.authUser = userResponse => (
       ]
     })
       .then((fullUser) => {
+        console.log('user obj', fullUser);
         const { password, ...User } = fullUser.dataValues;
         if (!User) {
           throw new Error('user not found');
@@ -138,6 +153,20 @@ module.exports.verifyToken = token => (
           where: {
             id: user_id,
           },
+          include: [{
+            association: 'Hosts',
+            attributes: [
+              'id',
+              'total_store_length',
+              'total_store_width',
+              's_address_1',
+              's_city',
+              's_state',
+              's_zip',
+              's_address_2',
+              'rental_rate',
+            ]
+          }],
           attributes: [
             'first_name',
             'last_name',

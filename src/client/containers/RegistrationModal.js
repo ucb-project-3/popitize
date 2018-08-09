@@ -8,24 +8,26 @@ import RegistrationForm from '../presentational/RegistrationForm';
 class RegistrationModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      form: {
-        total_store_width: '',
-        total_store_length: '',
-        s_address_1: '',
-        s_city: '',
-        s_state: '',
-        s_zip: '',
-        s_address_2: '',
-        rental_rate: '',
-      },
-      switchOn: false,
-      transactionComplete: false,
-    };
+    this.state = this.getInitialState()
   }
 
+  getInitialState = () => ({
+    form: {
+      total_store_width: '',
+      total_store_length: '',
+      s_address_1: '',
+      s_city: '',
+      s_state: '',
+      s_zip: '',
+      s_address_2: '',
+      rental_rate: '',
+    },
+    switchOn: false,
+    transactionComplete: false,
+  })
+
   componentWillReceiveProps = (nextProps) => {
-    const { status } = this.props.reg;
+    const status = this.props.reg.status;
     const newStatus = nextProps.reg.status;
     if (status.fetching === true && newStatus.fetched === true) {
       this.setState({ transactionComplete: true });
@@ -62,10 +64,11 @@ class RegistrationModal extends React.Component {
   }
 
   _onClose = () => {
-    this.setState({
-      transactionComplete: false,
-    });
+    const reset = () => (
+      this.setState(this.getInitialState())
+    );
     this.props.onClose();
+    setTimeout(reset, 500);
   }
 
   render = () => (
@@ -126,6 +129,11 @@ class RegistrationModal extends React.Component {
                   </Typography>
                 </DialogTitle>
                 <RegistrationForm
+                  accounts={{
+                    host: ('id' in this.props.reg.host),
+                    renter: ('id' in this.props.reg.renter),
+                  }}
+                  switchOn={this.state.switchOn}
                   inputs={this.state.form}
                   handleInput={this.handleInput}
                   handleSubmit={this.handleSubmit}
@@ -141,7 +149,7 @@ class RegistrationModal extends React.Component {
           alignItems: 'center',
         }}
             >
-              <Typography 
+              <Typography
                 variant="headline"
                 align="center"
               >

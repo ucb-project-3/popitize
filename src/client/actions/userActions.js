@@ -49,6 +49,7 @@ export const existingUser = user => (dispatch) => {
         const {
           token,
           exp,
+          host,
           ...retUser
         } = res.data;
         localStorage.clear();
@@ -56,6 +57,7 @@ export const existingUser = user => (dispatch) => {
         localStorage.setItem('exp', res.data);
 
         dispatch({ type: 'AUTH_USER_SUCCESS', payload: retUser });
+        dispatch({ type: 'CREATE_HOST_SUCCESS', payload: host });
       } else {
         fail();
       }

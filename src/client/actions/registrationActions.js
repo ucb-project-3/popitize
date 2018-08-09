@@ -12,5 +12,9 @@ export const newHostProfile = host => (dispatch) => {
     .catch(err => dispatch({ type: 'CREATE_HOST_ERROR', payload: err }));
 };
 
+export const getHostProfile = (id = null, token = null) => dispatch => {
+  axios.ge
+}
+
 export const newRenterProfile = renter => dispatch => ({ dispatch, renter });
 
