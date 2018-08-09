@@ -2,14 +2,15 @@ const router = require('express').Router();
 const db = require('../models');
 
 router.post('/reg/host', (req, res) => {
-  console.log(req.body);
   db.Host.create(req.body)
     .then((host) => {
-      const { user_id, ...others } = host;
+      console.log(host);
+      const { user_id, ...others } = host.dataValues;
       res.json(others);
     })
     .catch((err) => {
-      res.status(500);
+      console.log(err);
+      res.status(401);
       res.json(err);
     });
 });

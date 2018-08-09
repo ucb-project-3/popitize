@@ -9,6 +9,8 @@ const LoginDispatch = dispatch => ({
   existingUser: user => dispatch(existingUser(user)),
 });
 
+const RegistrationProps = ({ user, reg }) => ({ user, reg });
+
 const RegistrationDispatch = dispatch => ({
   newHost: host => dispatch(newHostProfile(host)),
   newRenter: () => console.log('dispatch new renter'),
@@ -24,6 +26,6 @@ export const connectProfile = Profile => (
 );
 
 export const connectRegistration = Reg => (
-  connect(LoginProps, RegistrationDispatch)(Reg)
+  connect(RegistrationProps, RegistrationDispatch)(Reg)
 );
 
