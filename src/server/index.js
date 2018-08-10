@@ -3,11 +3,20 @@ const parser = require('body-parser');
 const morgan = require('morgan');
 const db = require('./models');
 // const passport = require('passport');
+<<<<<<< HEAD
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 // const authRoutes = require('./controllers/authenticationRoutes');
 // const dataRoutes = require('./controllers/dataRoutes');
 // const dbRoutes = require('./controllers/dbRoutes');
+=======
+// const session = require('express-session');
+// const cookieParser = require('cookie-parser');
+const authRoutes = require('./controllers/authenticationRoutes');
+const dataRoutes = require('./controllers/dataRoutes');
+const dbRoutes = require('./controllers/dbRoutes');
+const registrationRoutes = require('./controllers/registrationRoutes');
+>>>>>>> 638c7bb0a47db184eb34714a55c2aa4e99a4590d
 const userSeed = require('./seeders/seeds');
 const path = require('path');
 
@@ -131,9 +140,24 @@ app.use((req, res) => {
 });
 
 
+<<<<<<< HEAD
 // app.use('/api', authRoutes);
 // app.use('/api', dataRoutes);
 // app.use(dbRoutes);
+=======
+// app.use(session({
+//   secret: process.env.SECRET_KEY,
+//   resave: false,
+//   saveUninitialized: true
+// })); // session secret
+// app.use(passport.initialize());
+// app.use(passport.session()); // persistent login sessions
+
+app.use('/api', authRoutes);
+app.use('/api', dataRoutes);
+app.use('/api', registrationRoutes);
+app.use(dbRoutes);
+>>>>>>> 638c7bb0a47db184eb34714a55c2aa4e99a4590d
 
 if (!(process.env.NODE_ENV === 'test')) {
   db.sequelize.sync({ force: true })

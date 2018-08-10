@@ -1,5 +1,6 @@
 import React from 'react';
 import Swipe from 'react-swipeable-views';
+import { Fade } from '@material-ui/core';
 import DesktopNav from '../presentational/DesktopNav';
 import RegistrationModal from './RegistrationModal';
 import Hosts from './Hosts';
@@ -14,6 +15,20 @@ class Dashboard extends React.Component {
       index: 0,
       regOpen: false,
     };
+    this.hostRef = React.createRef();
+    this.popupRef = React.createRef();
+    this.profileRef = React.createRef();
+  }
+
+  componentWillMount = () => {
+    if (!localStorage.token) {
+      window.location = '/';
+    } else {
+      const now = new Date();
+      if (localStorage.exp < now.getTime()) {
+        window.location = '/';
+      }
+    }
   }
 
   shouldComponentUpdate = (nextProps, nextState) => (
@@ -40,6 +55,9 @@ class Dashboard extends React.Component {
     });
   }
 
+  conditionalDisplay = (ref, enter) => {
+    ref.current.style.display = enter ? 'initial' : 'none';
+  }
 
   render = () => (
     <div id="dashboard-container">
@@ -56,14 +74,34 @@ class Dashboard extends React.Component {
       <Swipe
         index={this.state.index}
         onChangeIndex={index => this.handleChangeIndex(null, index)}
-        style={{ marginTop: '.5rem' }}
       >
-        <Hosts />
-
-        <Renter />
-
-        <Profile />
-
+        <Fade
+          in={this.state.index === 0}
+          onExited={() => this.conditionalDisplay(this.hostRef, false)}
+          onEntering={() => this.conditionalDisplay(this.hostRef, true)}
+        >
+          <div ref={this.hostRef}>
+            <Hosts />
+          </div>
+        </Fade>
+        <Fade
+          in={this.state.index === 1}
+          onExited={() => this.conditionalDisplay(this.popupRef, false)}
+          onEntering={() => this.conditionalDisplay(this.popupRef, true)}
+        >
+          <div ref={this.popupRef}>
+            <Renter />
+          </div>
+        </Fade>
+        <Fade
+          in={this.state.index === 2}
+          onExited={() => this.conditionalDisplay(this.profileRef, false)}
+          onEntering={() => this.conditionalDisplay(this.profileRef, true)}
+        >
+          <div ref={this.profileRef}>
+            <Profile />
+          </div>
+        </Fade>
       </Swipe>
     </div>
   )

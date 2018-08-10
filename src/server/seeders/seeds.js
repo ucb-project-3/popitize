@@ -1,4 +1,5 @@
 const db = require('../models');
+const { hash } = require('../utils/crypt');
 
 const seedUsers = () => new Promise(resolve => (
   db.User.bulkCreate([
@@ -115,6 +116,18 @@ const seedUsers = () => new Promise(resolve => (
       first_name: 'Berk',
       last_name: 'Enstocks',
       password: '12345',
+      age_range: 1,
+      credit_rating: 700,
+      address_1: '160 Main St.',
+      city: 'San Francisco',
+      state: 'ca',
+      zip: '94107',
+    },
+    {
+      email: 'test@test.com',
+      first_name: 'Berk',
+      last_name: 'Enstocks',
+      password: hash('Pass1!'),
       age_range: 1,
       credit_rating: 700,
       address_1: '160 Main St.',

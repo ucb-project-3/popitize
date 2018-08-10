@@ -1,0 +1,6 @@
+{
+  "watch": [
+    "src/server/index.js",
+    "src/server/**/*"
+  ]
+}
