@@ -142,8 +142,10 @@ const RentalForm = (props) => {
             <FormGroup>
               <FormControlLabel
                 label="I agree to the terms and conditions"
+                required
                 control={
                   <Checkbox
+                    required
                     checked={props.agree}
                     onChange={props.handleAgree}
                   />

@@ -4,6 +4,8 @@ import { newHostProfile, newRenterProfile } from '../actions/registrationActions
 
 const LoginProps = ({ user }) => ({ user });
 
+const HostProps = ({ reg }) => ({ reg });
+
 const LoginDispatch = dispatch => ({
   newUser: user => dispatch(newUser(user)),
   existingUser: user => dispatch(existingUser(user)),
@@ -27,5 +29,9 @@ export const connectProfile = Profile => (
 
 export const connectRegistration = Reg => (
   connect(RegistrationProps, RegistrationDispatch)(Reg)
+);
+
+export const connectHosts = Hosts => (
+  connect(HostProps, null)(Hosts)
 );
 

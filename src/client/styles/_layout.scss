@@ -12,6 +12,14 @@
   grid-column-gap: 2rem;
 }
 
+#popup-grid {
+  margin: auto;
+  width: 95%;
+  display: grid;
+  grid-template-columns: 48% 48%;
+  grid-column-gap: 2rem;
+}
+
 #host-non-grid {
   display: flex;
   flex-flow: column nowrap;

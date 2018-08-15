@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Paper, Typography, Dialog, AppBar, IconButton, Card, CardMedia, List, ListItem } from '@material-ui/core';
+import { Paper, Typography, Dialog, AppBar, IconButton, Card, CardMedia, List, ListItem, DialogTitle, DialogContent, DialogContentText, Button } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import moment from 'moment';
 import 'react-dates/initialize';
@@ -22,15 +22,14 @@ class HostModal extends React.Component {
     this.state = {
       first_name: null,
       last_name: null,
-      startDate: moment(),
-      endDate: moment(),
       focusedInput: null,
       agree: false,
+      showSuccess: false,
       form: {
         popup_name: '',
         popup_description: '',
-        begin_date: '',
-        end_date: '',
+        begin_date: moment(),
+        end_date: moment(),
       }
     };
   }
@@ -57,7 +56,10 @@ class HostModal extends React.Component {
 
   handleInput = (event, field) => {
     this.setState({
-      [field]: event.target.value,
+      form: {
+        ...this.state.form,
+        [field]: event.target.value,
+      }
     });
   }
 
@@ -67,7 +69,32 @@ class HostModal extends React.Component {
     });
   }
 
-  handleSubmit = () => console.log('submitted');
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (!this.props.renter_id) {
+      alert('you must first go to your profile and register as a renter');
+      return;
+    } else if (!this.state.agree) {
+      alert('you must agree to the terms of the agreement');
+      return;
+    }
+    const { form } = this.state;
+    const data = {
+      ...form,
+      begin_date: form.begin_date.format('x'),
+      end_date: form.end_date.format('x'),
+      host_id: this.props.content.id,
+      image_url: this.props.content.image_url,
+      renter_id: this.props.renter_id,
+    };
+    console.log('data', data);
+    axios.post('/api/reg/popup', data)
+      .then(() => {
+        console.log('success!');
+        this.setState({ showSuccess: true });
+      })
+      .catch(err => console.log(err));
+  }
 
   renderCalendar = () => (
     <div
@@ -79,11 +106,19 @@ class HostModal extends React.Component {
       }}
     >
       <DateRangePicker
-        startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+        startDate={this.state.form.begin_date} // momentPropTypes.momentObj or null,
         startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-        endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+        endDate={this.state.form.end_date} // momentPropTypes.momentObj or null,
         endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-        onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+        onDatesChange={({ startDate, endDate }) => (
+          this.setState({
+            form: {
+              ...this.state.form,
+              begin_date: startDate,
+              end_date: endDate
+            }
+          })
+        )} // PropTypes.func.isRequired,
         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
         onFocusChange={focusedInput => this.setState({ focusedInput })}
         anchorDirection="right"
@@ -95,7 +130,6 @@ class HostModal extends React.Component {
   )
 
   render = () => {
-    console.log(this.state);
     if (!this.props.content) {
       return null;
     }
@@ -174,6 +208,19 @@ class HostModal extends React.Component {
             />
           </div>
         </div>
+        <Dialog open={this.state.showSuccess}>
+          <DialogTitle>
+            Success!
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Congradulations! The owner of the space will be in contact with you soon to work out the details.
+            </DialogContentText>
+            <Button onClick={() => window.location.reload(true)}>
+              Complete Transaction
+            </Button>
+          </DialogContent>
+        </Dialog>
       </Dialog>
     );
   }

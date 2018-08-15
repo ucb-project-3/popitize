@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    popup_name: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
     popup_description: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -31,17 +35,22 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     begin_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.BIGINT,
       allowNull: false,
     },
     end_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.BIGINT,
       allowNull: false,
     },
     isActive: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
+      allowNull: false,
+      defaultValue: true,
     },
+    image_url: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
   });
 
   Popup.associate = (models) => {
@@ -66,13 +75,13 @@ module.exports = (sequelize, DataTypes) => {
       },
     });
 
-    Popup.belongsTo(models.PopupCategory, {
-      foreignKey: {
-        name: 'category_id',
-        allowNull: false,
-      },
-      targetKey: 'id',
-    });
+    // Popup.belongsTo(models.PopupCategory, {
+    //   foreignKey: {
+    //     name: 'category_id',
+    //     allowNull: false,
+    //   },
+    //   targetKey: 'id',
+    // });
   };
 
   return Popup;
