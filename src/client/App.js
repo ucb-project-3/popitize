@@ -13,6 +13,7 @@ import store from './store';
 const theme = createMuiTheme({
   palette: {
     primary: { main: '#FFCCBC' },
+    textPrimary: { main: 'white' },
     secondary: { main: '#FFAB91' },
   }
 });

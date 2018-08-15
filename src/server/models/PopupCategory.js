@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
     // We're saying that a PopupCategory should belong to an Author
     // A PopupCategory can't be created without an Author due to the foreign key constraint
 
-    PopupCategory.hasMany(models.Renter, {
-      foreignKey: 'category_id',
-      sourceKey: 'id',
-      onDelete: 'cascade',
-    });
+    // PopupCategory.hasMany(models.Renter, {
+    //   foreignKey: 'category_id',
+    //   sourceKey: 'id',
+    //   onDelete: 'cascade',
+    // });
   };
 
   return PopupCategory;

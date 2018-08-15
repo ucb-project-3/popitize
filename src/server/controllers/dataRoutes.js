@@ -5,7 +5,7 @@ const { getHosts, getPopups } = require('../businessLogic/dataActions');
 router.get('/hosts', (req, res) => {
   getHosts()
     .then(Hosts => res.json(Hosts))
-    .catch((err) => { throw err; });
+    .catch(err => res.status(401).send({}));
 });
 
 router.get('/popups', (req, res) => {
@@ -13,7 +13,5 @@ router.get('/popups', (req, res) => {
     .then(Popups => res.json(Popups))
     .catch((err) => { throw err; });
 });
-
-
 
 module.exports = router;

@@ -84,7 +84,8 @@ class Login extends React.Component {
 
    render = () => (
      <Fragment>
-       <div id="login-background" />
+       {/* <div id="login-background" /> */}
+       
        <div id="login-frame">
          <LoginSuccess open={this.state.success} login={this.state.showLogin} />
          <LoginFail

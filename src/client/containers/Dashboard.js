@@ -5,6 +5,7 @@ import DesktopNav from '../presentational/DesktopNav';
 import RegistrationModal from './RegistrationModal';
 import Hosts from './Hosts';
 import Renter from './Renter';
+import Popups from './Popups';
 import Profile from './Profile';
 
 
@@ -96,7 +97,7 @@ class Dashboard extends React.Component {
           onEntering={() => this.conditionalDisplay(this.popupRef, true)}
         >
           <div ref={this.popupRef}>
-            <Renter />
+            <Popups />
           </div>
         </Fade>
         <Fade

@@ -13,8 +13,8 @@ module.exports.getHosts = () => (
         's_state',
         's_zip',
         's_address_2',
+        'image_url',
         'rental_rate',
-        'image_url'
       ]
     })
       .then(Hosts => resolve(Hosts))
@@ -24,8 +24,11 @@ module.exports.getHosts = () => (
 
 module.exports.getPopups = () => (
   new Promise(resolve => (
-    db.Popup.findAll()
-      .then(Popups => resolve(Popups))
+    db.Popup.findAll({
+    })
+      .then((Popups) => {
+        resolve(Popups);
+      })
       .catch((err) => { throw err; })
   ))
 );

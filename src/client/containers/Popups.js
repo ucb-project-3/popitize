@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
 import { connectHosts } from '../util/connects';
-import HostCard from '../presentational/HostCard';
-import HostGrid from '../presentational/HostGrid';
+import { Typography } from '@material-ui/core';
+import PopupCard from '../presentational/PopupCard';
+import PopupGrid from '../presentational/PopupGrid';
 import HostModal from '../presentational/HostModal';
 
 class Host extends React.Component {
@@ -17,7 +18,7 @@ class Host extends React.Component {
     }
 
     getHosts = () => {
-      axios.get('./api/hosts')
+      axios.get('./api/popups')
         .then((res) => {
           console.log(res.data);
           this.setState({
@@ -42,36 +43,47 @@ class Host extends React.Component {
     }
 
     renderHostCards = () => {
-      if (this.state.hosts) {
+      if (this.state.hosts.length > 0) {
         const cards = this.state.hosts
-          .filter(({ accepting_renters }) => !accepting_renters)
           .map(host => (
-            <HostCard
+            <PopupCard
               openModal={this.openModal}
               key={host.id}
               {...host}
             />
           ));
-        const gridItems = [[], [], [], [], []];
+        const gridItems = [[], []];
         let j = 0;
         cards.forEach((item) => {
           gridItems[j].push(item);
-          if (j > 2) {
+          if (j > 0) {
             j = 0;
           } else {
             j += 1;
           }
         });
         return (
-          <HostGrid
+          <PopupGrid
             row1={gridItems[0]}
             row2={gridItems[1]}
-            row3={gridItems[2]}
-            row4={gridItems[3]}
           />
         );
       }
-      return null;
+      return (
+        <div
+          id="popup-fail-message"
+          style={{
+            width: '100%'
+          }}
+        >
+          <Typography
+            variant="headline"
+            align="center"
+          >
+          No popups to list
+          </Typography>
+        </div>
+      );
     }
 
     render() {

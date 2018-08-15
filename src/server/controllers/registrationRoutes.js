@@ -1,6 +1,18 @@
 const router = require('express').Router();
 const db = require('../models');
 
+router.post('/reg/popup', (req, res) => {
+  db.Popup.create({ ...req.body })
+    .then(({ dataValues }) => {
+      console.log(dataValues);
+      res.status(200).send({});
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(401).send({});
+    });
+});
+
 router.post('/reg/host', (req, res) => {
   db.Host.create(req.body)
     .then((host) => {
