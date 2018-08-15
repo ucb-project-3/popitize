@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
 import { connectHosts } from '../util/connects';
+import { Typography } from '@material-ui/core';
 import PopupCard from '../presentational/PopupCard';
 import PopupGrid from '../presentational/PopupGrid';
 import HostModal from '../presentational/HostModal';
@@ -42,7 +43,7 @@ class Host extends React.Component {
     }
 
     renderHostCards = () => {
-      if (this.state.hosts) {
+      if (this.state.hosts.length > 0) {
         const cards = this.state.hosts
           .map(host => (
             <PopupCard
@@ -68,7 +69,21 @@ class Host extends React.Component {
           />
         );
       }
-      return null;
+      return (
+        <div
+          id="popup-fail-message"
+          style={{
+            width: '100%'
+          }}
+        >
+          <Typography
+            variant="headline"
+            align="center"
+          >
+          No popups to list
+          </Typography>
+        </div>
+      );
     }
 
     render() {
