@@ -24,6 +24,15 @@ import '../styles/Login.scss';
 //   },
 // };
 
+const origin = (
+  window.location.origin === 'http://localhost:3000' ?
+    'http://localhost:8080'
+    :
+    window.location.origin
+);
+const vid = `${origin}/api/img/popvid1.ogg`;
+console.log('vid', vid);
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -84,8 +93,20 @@ class Login extends React.Component {
 
    render = () => (
      <Fragment>
-       {/* <div id="login-background" /> */}
-       
+       <div id="login-background">
+         <video
+           src={vid}
+           style={{
+           width: '100vw',
+          //  height: '100vh',
+          }}
+           autoPlay
+           loop
+           width="100vw"
+          //  height="100vh"
+         />
+       </div>
+
        <div id="login-frame">
          <LoginSuccess open={this.state.success} login={this.state.showLogin} />
          <LoginFail
