@@ -25,6 +25,7 @@ class HostModal extends React.Component {
       startDate: moment(),
       endDate: moment(),
       focusedInput: null,
+      agree: false,
       form: {
         popup_name: '',
         popup_description: '',
@@ -57,6 +58,12 @@ class HostModal extends React.Component {
   handleInput = (event, field) => {
     this.setState({
       [field]: event.target.value,
+    });
+  }
+
+  handleAgree = (event) => {
+    this.setState({
+      agree: event.target.checked,
     });
   }
 
@@ -98,7 +105,7 @@ class HostModal extends React.Component {
         fullScreen
         open={showModal}
       >
-        <AppBar position="static" color="secondary">
+        <AppBar position="static" color="primary">
           <IconButton
             onClick={closeModal}
           >
@@ -158,6 +165,8 @@ class HostModal extends React.Component {
             }}
           >
             <RentalForm
+              agree={this.state.agree}
+              handleAgree={this.handleAgree}
               handleInput={this.handleInput}
               handleSubmit={this.handleSubmit}
               calendar={this.renderCalendar}
