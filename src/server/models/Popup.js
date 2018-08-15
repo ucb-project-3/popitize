@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     Popup_category: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     popup_description: {
       type: DataTypes.TEXT,
@@ -24,11 +24,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     p_length: {
       type: DataTypes.DECIMAL(8, 2),
-      allowNull: false,
+      allowNull: true,
     },
     p_width: {
       type: DataTypes.DECIMAL(8, 2),
-      allowNull: false,
+      allowNull: true,
     },
     begin_date: {
       type: DataTypes.DATE,
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     isActive: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
     },
   });
 

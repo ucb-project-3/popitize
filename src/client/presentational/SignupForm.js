@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 
 
 const SignupForm = props => (
-  <div>
+  <div
+  >
     <Typography variant="headline" id="signup-h1"> Sign up Form </Typography>
     <form onSubmit={props.handleSubmit} className="2-col-form-body">
       <TextField
